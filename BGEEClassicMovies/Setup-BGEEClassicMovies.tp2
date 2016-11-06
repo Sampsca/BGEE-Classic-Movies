@@ -1,0 +1,105 @@
+BACKUP "BGEEClassicMovies/backup"
+AUTHOR Sam. // <http://www.shsforums.net/user/10485-sam/>
+
+VERSION ~v0.01~
+README ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
+
+//Developed for Baldur's Gate Enhanced Edition v1.0.2007
+//Coded by Wisp
+
+ALWAYS
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY dirs BEGIN
+	"BGEEClassicMovies/movies" => movies
+	"BGEEClassicMovies/lang/en_us/movies" => "lang/en_us/movies"
+  END
+
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+	BEREGOST => 19659
+	BG4LOGO  => 20698
+	BGENTER  => 19660
+	BGSUNRIS => 25274
+	BGSUNSET => 25275
+	BHAAL	=> 19661
+	BILOGO   => 20699
+	BIOWBOTH => 25280
+	BLACKPIT => 31833
+	CAMP	 => 19662
+	CNDLKEEP => 19663
+	CREDITS  => 15591
+	DEATHAND => 25282
+	DUNGEON  => 19664
+	DURLAG   => 24075
+	ELDRCITY => 19665
+	ENDCRDIT => 25283
+	ENDMOVIE => 19666
+	FRARMINN => 19667
+	GNOLL	=> 19668
+	INFELOGO => 20700
+	INTRO	=> 19669
+	IRONTHRN => 19670
+	MINEFLOD => 19671
+	NASHKELL => 19672
+	PALACE   => 19673
+	REST	 => 25292
+	SEWER	=> 19674
+	TAVERN   => 19675
+	TSRLOGO  => 20697
+	WRECK	=> 24076
+	WYVERN   => 19676
+  END
+
+  //Function for patching movidesc.2da by inserting any missing rows and optionally update existing strrefs
+  //vars: f_Replace - boolean; when true, existing entries in movidesc.2da will have their
+  //	  strrefs updated if they do not match the strrefs in movidesc_map
+  DEFINE_ACTION_FUNCTION patch_movidesc INT_VAR f_Replace = 1 BEGIN
+	COPY_EXISTING movidesc.2da override
+	  READ_2DA_ENTRIES_NOW movidesc 2
+	  FOR (i = 1; i < movidesc; ++i) BEGIN
+		READ_2DA_ENTRY_FORMER movidesc i 0 movie
+		READ_2DA_ENTRY_FORMER movidesc i 1 strref
+		TO_UPPER movie
+		SET $movidesc("%movie%") = strref
+	  END
+	  PHP_EACH movidesc_map AS m => s BEGIN
+		TO_UPPER m
+		PATCH_IF !VARIABLE_IS_SET $movidesc("%m%") BEGIN
+		  INSERT_2DA_ROW movidesc 2 "%m% %s%"
+		  SET $movidesc("%m%") = s
+		END
+		PATCH_IF f_Replace AND $movidesc("%m%") != s BEGIN
+		  REPLACE_TEXTUALLY "%m%[ %TAB%]+[0-9]+" "%m% %s%"
+		  SET $movidesc("%m%") = s
+		END
+	  END
+	  //PRETTY_PRINT_2DA //WeiDU 231 is bugged and will insert an unevaluated var when pretty-printing movidesc.2da
+	BUT_ONLY
+  END
+END
+
+
+
+BEGIN "Replace all movies"
+SUBCOMPONENT "Restore BG1 movies to BG: EE"
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME oh1000.are "This mod is only available for BG: EE"
+
+ACTION_PHP_EACH dirs AS src => target BEGIN
+  COPY_LARGE "%src%" "%target%"
+END
+
+LAF patch_movidesc END
+
+
+
+BEGIN "Add missing movies"
+SUBCOMPONENT "Restore BG1 movies to BG: EE"
+REQUIRE_PREDICATE FILE_EXISTS_IN_GAME oh1000.are "This mod is only available for BG: EE"
+
+ACTION_PHP_EACH dirs AS src => target BEGIN
+  ACTION_BASH_FOR "%src%" ".*\.wbm$" BEGIN
+	ACTION_IF !FILE_EXISTS "%target%/%BASH_FOR_FILE%" BEGIN
+	  COPY_LARGE "%BASH_FOR_FILESPEC%" "%target%/%BASH_FOR_FILE%"
+	END
+  END
+END
+
+LAF patch_movidesc INT_VAR f_Replace = 0 END
