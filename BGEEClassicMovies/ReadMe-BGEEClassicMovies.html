@@ -274,9 +274,9 @@
           Author: Sam.
         </p>
         <p class="about">
-          <a href="http://www.shsforums.net/files/category/5-miscellaneous-released-mods/">Mod Website</a> &#8226;
-          <a href="http://forum.baldursgate.com/discussion/comment/173656/">Mod Forum</a> &#8226;
-          Version: 0.01
+          <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Mod Website</a> &#8226;
+          <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Mod Forum</a> &#8226;
+          Version: 0.02
         </p>
         <hr />
         <p class="menu">
@@ -293,21 +293,23 @@
         <a name="intro" id="intro"></a>
         <div class="content">
           <h2>Introduction</h2>
-          <p>This is a WeiDU mini-mod that restores the classic movies from the original Baldur’s Gate to Baldur’s Gate:  Enhanced Edition.  This mod was developed for Baldur's Gate Enhanced Edition v1.0.2007, and will be considered a beta version as long as BG:EE is being updated.  Use at your own risk!  Questions, comments, suggestions, and bug reports are of course welcome.</p>
+          <p>This is a WeiDU mini-mod that restores the classic movies from the original Baldur’s Gate and select movies from Baldur’s Gate II to Baldur’s Gate:  Enhanced Edition.  This mod was developed for Baldur's Gate Enhanced Edition v1.0.2007, and will be considered a beta version as long as BG:EE is being updated.  Use at your own risk!  Questions, comments, suggestions, and bug reports are of course welcome.</p>
 	  <h5>The restored movies include:</h5>
 	  <br />
           <ul>
             <li>Beregost</li>
             <li>Black Isle Logo</li>
             <li>Entering Baldur's Gate</li>
-            <li>Sunrise movie</li>
-            <li>Sunset movie</li>
+            <li>BG Sunrise movie</li>
+            <li>BG Sunset movie</li>
             <li>The Temple of Bhaal</li>
             <li>BioWare Logo</li>
             <li>Bioware logo movie</li>
+            <li>The Black Pits</li>
             <li>Bandit Camp</li>
             <li>Inside Candle Keep</li>
             <li>Credits</li>
+            <li>Sunset movie</li>
             <li>Death movie</li>
             <li>The Dungeon</li>
             <li>Entering Durlag's Tower</li>
@@ -321,8 +323,11 @@
             <li>The Iron Throne</li>
             <li>The Flooded Mine</li>
             <li>Entering Nashkel</li>
+            <li>Sunrise movie</li>
             <li>The Ducal Palace</li>
             <li>Resting outside movie</li>
+            <li>Resting in dungeon movie</li>
+            <li>Resting at inn movie</li>
             <li>The Sewers</li>
             <li>The Tavern</li>
             <li>TSR Logo</li>
@@ -342,38 +347,43 @@
           <p>This is a WeiDU mod.  To install, unzip the RAR archive into your game folder <b>that has the chitin.key file</b> (usually "Baldur's Gate Enhanced Edition\Data\00766") and double-click on Setup-BGEEClassicMovies.exe.  To uninstall, double-click on BGEEClassicMovies.exe again and select the Uninstall option.</p>
 	  <p>Additionally, you will need to edit your Baldur.ini file by hand.  This is necessary in order to play the movies not used by BG:EE in the Movies GUI dialog.  It is usually located at "Documents\Baldur's Gate - Enhanced Edition\Baldur.ini" in Win 7 and at "My Documents\Baldur's Gate - Enhanced Edition\Baldur.ini" in Win XP.  You will need to add these entries:</p>
           <div class="important">
-            <p>	'MOVIES',	'BEREGOST',	'1',<br />
-	'MOVIES',	'BG4LOGO',	'1',<br />
-	'MOVIES',	'BGENTER',	'1',<br />
-	'MOVIES',	'BGSUNRIS',	'1',<br />
-	'MOVIES',	'BGSUNSET',	'1',<br />
-	'MOVIES',	'BHAAL',	'1',<br />
-	'MOVIES',	'BILOGO',	'1',<br />
-	'MOVIES',	'BIOWBOTH',	'1',<br />
-	'MOVIES',	'BLACKPIT',	'1',<br />
-	'MOVIES',	'CAMP',	'1',<br />
-	'MOVIES',	'CNDLKEEP',	'1',<br />
-	'MOVIES',	'CREDITS',	'1',<br />
-	'MOVIES',	'DEATHAND',	'1',<br />
-	'MOVIES',	'DUNGEON',	'1',<br />
-	'MOVIES',	'DURLAG',	'1',<br />
-	'MOVIES',	'ELDRCITY',	'1',<br />
-	'MOVIES',	'ENDCRDIT',	'1',<br />
-	'MOVIES',	'ENDMOVIE',	'1',<br />
-	'MOVIES',	'FRARMINN',	'1',<br />
-	'MOVIES',	'GNOLL',	'1',<br />
-	'MOVIES',	'INFELOGO',	'1',<br />
-	'MOVIES',	'INTRO',	'1',<br />
-	'MOVIES',	'IRONTHRN',	'1',<br />
-	'MOVIES',	'MINEFLOD',	'1',<br />
-	'MOVIES',	'NASHKELL',	'1',<br />
-	'MOVIES',	'PALACE',	'1',<br />
-	'MOVIES',	'REST',	'1',<br />
-	'MOVIES',	'SEWER',	'1',<br />
-	'MOVIES',	'TAVERN',	'1',<br />
-	'MOVIES',	'TSRLOGO',	'1',<br />
-	'MOVIES',	'WRECK',	'1',<br />
-	'MOVIES',	'WYVERN',	'1',</p>
+            <p>	'MOVIES',	'BEREGOST',	'1',	<br />
+	'MOVIES',	'BG4LOGO',	'1',	<br />
+	'MOVIES',	'BGENTER',	'1',	<br />
+	'MOVIES',	'BGSUNRIS',	'1',	<br />
+	'MOVIES',	'BGSUNSET',	'1',	<br />
+	'MOVIES',	'BHAAL',	'1',	<br />
+	'MOVIES',	'BILOGO',	'1',	<br />
+	'MOVIES',	'BIOWBOTH',	'1',	<br />
+	'MOVIES',	'BLACKPIT',	'1',	<br />
+	'MOVIES',	'CAMP',	'1',	<br />
+	'MOVIES',	'CNDLKEEP',	'1',	<br />
+	'MOVIES',	CREDITS',	'1',	<br />
+	'MOVIES',	DAYNITE',	'1',	<br />
+	'MOVIES',	'DEATHAND',	'1',	<br />
+	'MOVIES',	'DUNGEON',	'1',	<br />
+	'MOVIES',	'DURLAG',	'1',	<br />
+	'MOVIES',	'ELDRCITY',	'1',	<br />
+	'MOVIES',	'ENDCRDIT',	'1',	<br />
+	'MOVIES',	'ENDMOVIE',	'1',	<br />
+	'MOVIES',	'FRARMINN',	'1',	<br />
+	'MOVIES',	'GNOLL',	'1',	<br />
+	'MOVIES',	'INFELOGO',	'1',	<br />
+	'MOVIES',	'INTRO',	'1',	<br />
+	'MOVIES',	'IRONTHRN',	'1',	<br />
+	'MOVIES',	'MINEFLOD',	'1',	<br />
+	'MOVIES',	'NASHKELL',	'1',	<br />
+	'MOVIES',	NITEDAY',	'1',	<br />
+	'MOVIES',	'PALACE',	'1',	<br />
+	'MOVIES',	'REST',	'1',	<br />
+	'MOVIES',	RESTINN',	'1',	<br />
+	'MOVIES',	RESTDUNG',	'1',	<br />
+	'MOVIES',	'SEWER',	'1',	<br />
+	'MOVIES',	'TAVERN',	'1',	<br />
+	'MOVIES',	'TSRLOGO',	'1',	<br />
+	'MOVIES',	'WRECK',	'1',	<br />
+	'MOVIES',	'WYVERN',	1',	<br />
+</p>
           </div>
           <address>
             <span class="footer">BG: EE Classic Movies &gt; Installation</span> &#8226;<a href="#top">BACK TO TOP</a>
@@ -414,6 +424,10 @@
           <h6>05 December 2012 - Version 0.01:</h6>
           <ul>
             <li>Initial release.</li>
+          </ul>
+          <h6>05 December 2012 - Version 0.02:</h6>
+          <ul>
+            <li>Added DAYNITE (Sunset movie), NITEDAY (Sunrise movie), RESTDUNG (Resting in dungeon movie), and RESTINN (Resting at inn movie) from BGII.</li>
           </ul>
           <address>
             <span class="footer">BG: EE Classic Movies &gt; Version History</span> &#8226;<a href="#top">BACK TO TOP</a>

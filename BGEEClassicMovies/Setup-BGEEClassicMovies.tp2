@@ -1,7 +1,7 @@
 BACKUP "BGEEClassicMovies/backup"
-AUTHOR Sam. // <http://www.shsforums.net/user/10485-sam/>
+AUTHOR Sam. // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
 
-VERSION ~v0.01~
+VERSION ~v0.02~
 README ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
 //Developed for Baldur's Gate Enhanced Edition v1.0.2007
@@ -15,37 +15,41 @@ ALWAYS
 
   ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
 	BEREGOST => 19659
-	BG4LOGO  => 20698
-	BGENTER  => 19660
+	BG4LOGO => 20698
+	BGENTER => 19660
 	BGSUNRIS => 25274
 	BGSUNSET => 25275
-	BHAAL	=> 19661
-	BILOGO   => 20699
+	BHAAL => 19661
+	BILOGO => 20699
 	BIOWBOTH => 25280
 	BLACKPIT => 31833
-	CAMP	 => 19662
+	CAMP => 19662
 	CNDLKEEP => 19663
-	CREDITS  => 15591
+	CREDITS => 15591
+	DAYNITE => 25275
 	DEATHAND => 25282
-	DUNGEON  => 19664
-	DURLAG   => 24075
+	DUNGEON => 19664
+	DURLAG => 24075
 	ELDRCITY => 19665
 	ENDCRDIT => 25283
 	ENDMOVIE => 19666
 	FRARMINN => 19667
-	GNOLL	=> 19668
+	GNOLL => 19668
 	INFELOGO => 20700
-	INTRO	=> 19669
+	INTRO => 19669
 	IRONTHRN => 19670
 	MINEFLOD => 19671
 	NASHKELL => 19672
-	PALACE   => 19673
-	REST	 => 25292
-	SEWER	=> 19674
-	TAVERN   => 19675
-	TSRLOGO  => 20697
-	WRECK	=> 24076
-	WYVERN   => 19676
+	NITEDAY => 25274
+	PALACE => 19673
+	REST => 25292
+	RESTDUNG => 25293
+	RESTINN => 25294
+	SEWER => 19674
+	TAVERN => 19675
+	TSRLOGO => 20697
+	WRECK => 24076
+	WYVERN => 19676
   END
 
   //Function for patching movidesc.2da by inserting any missing rows and optionally update existing strrefs
