@@ -1,10 +1,10 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR Sam. // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
 
-VERSION ~v0.03~
+VERSION ~v0.04~
 README ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
-//Developed for Baldur's Gate Enhanced Edition v1.0.2007
+//Developed for Baldur's Gate Enhanced Edition v1.0.2010
 //Coded by Wisp
 
 ALWAYS
@@ -23,6 +23,7 @@ ALWAYS
 	BILOGO => 20699
 	BIOWBOTH => 25280
 	BLACKPIT => 31833
+	BWDRAGON => 25280
 	CAMP => 19662
 	CNDLKEEP => 19663
 	CREDITS => 15591
@@ -48,6 +49,7 @@ ALWAYS
 	SEWER => 19674
 	TAVERN => 19675
 	TSRLOGO => 20697
+	WOTC => 25295
 	WRECK => 24076
 	WYVERN => 19676
   END
