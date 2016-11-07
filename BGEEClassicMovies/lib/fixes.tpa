@@ -1,0 +1,7 @@
+COPY_EXISTING ar3300.bcs override
+  DECOMPILE_AND_PATCH BEGIN
+    REPLACE_TEXTUALLY ~\(SetGlobal("EnteredBeregost","GLOBAL",1)\)~ ~StartMovie("BEREGOST") \1~
+  END
+BUT_ONLY
+UNLESS //This hideous thing is to keep the movie from being added if it is already present
+~167OB%LNL%0 0 0 0 0 0 0 0 0 0 0 0 ""OB%LNL%OB%LNL%0 0 0 0 0 0 0 0 0 0 0 0 ""OB%LNL%OB%LNL%0 0 0 0 0 0 0 0 0 0 0 0 ""OB%LNL%0 0 0 0 0"BEREGOST" "" AC~

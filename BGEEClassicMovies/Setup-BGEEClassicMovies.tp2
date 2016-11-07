@@ -1,7 +1,7 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR Sam. // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
 
-VERSION ~v0.02~
+VERSION ~v0.03~
 README ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
 //Developed for Baldur's Gate Enhanced Edition v1.0.2007
@@ -91,7 +91,7 @@ ACTION_PHP_EACH dirs AS src => target BEGIN
 END
 
 LAF patch_movidesc END
-
+INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
 
 
 BEGIN "Add missing movies"
@@ -107,3 +107,4 @@ ACTION_PHP_EACH dirs AS src => target BEGIN
 END
 
 LAF patch_movidesc INT_VAR f_Replace = 0 END
+INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
