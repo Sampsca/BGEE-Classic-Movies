@@ -1,6 +1,6 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR ~Sam.~ // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
-VERSION @0
+VERSION ~v0.05~
 README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
 //Developed for Baldur's Gate Enhanced Edition v1.3
@@ -8,8 +8,12 @@ README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEECl
 
 ALWAYS
 	ACTION_DEFINE_ASSOCIATIVE_ARRAY dirs BEGIN
-		"BGEEClassicMovies/movies" => "movies"
-		"BGEEClassicMovies/lang/%LANGUAGE%/movies" => "lang/%LANGUAGE%/movies"
+		"BGEEClassicMovies/movies" , "BGEEClassicMovies/movies" => "movies"
+		"BGEEClassicMovies/movies/480" , "BGEEClassicMovies/movies/480" => "movies/480"
+		"BGEEClassicMovies/movies/lo" , "BGEEClassicMovies/movies/lo" => "movies/lo"
+		"BGEEClassicMovies/lang/%LANGUAGE%/movies" , "BGEEClassicMovies/lang/en_US/movies" => "lang/%LANGUAGE%/movies"
+		"BGEEClassicMovies/lang/%LANGUAGE%/movies/480" , "BGEEClassicMovies/lang/en_US/movies/480" => "lang/%LANGUAGE%/movies/480"
+		"BGEEClassicMovies/lang/%LANGUAGE%/movies/lo" , "BGEEClassicMovies/lang/en_US/movies/lo" => "lang/%LANGUAGE%/movies/lo"
 	END
 
 	ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
@@ -77,7 +81,7 @@ ALWAYS
 					SET $movidesc("%m%") = s
 				END
 			END
-			REPLACE ~9999999~ @1
+			REPLACE ~9999999~ @0//Beamdog Logo
 			PRETTY_PRINT_2DA
 		BUT_ONLY
 	END
@@ -85,105 +89,33 @@ ALWAYS
 	//update Baldur.ini
 	ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.ini~) BEGIN
 		COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%~
-			DEFINE_ASSOCIATIVE_ARRAY table_ini BEGIN
-				"MOVIES" => "BEREGOST"
-				"MOVIES" => "BG4LOGO"
-				"MOVIES" => "BGENTER"
-				"MOVIES" => "BGSUNRIS"
-				"MOVIES" => "BGSUNSET"
-				"MOVIES" => "BHAAL"
-				"MOVIES" => "BILOGO"
-				"MOVIES" => "BIOWBOTH"
-				"MOVIES" => "BLACKPIT"
-				"MOVIES" => "BWDRAGON"
-				"MOVIES" => "CAMP"
-				"MOVIES" => "CNDLKEEP"
-				"MOVIES" => "CREDITS"
-				"MOVIES" => "DAYNITE"
-				"MOVIES" => "DEATHAND"
-				"MOVIES" => "DUNGEON"
-				"MOVIES" => "DURLAG"
-				"MOVIES" => "ELDRCITY"
-				"MOVIES" => "ENDCRDIT"
-				"MOVIES" => "ENDMOVIE"
-				"MOVIES" => "FRARMINN"
-				"MOVIES" => "GNOLL"
-				"MOVIES" => "INFELOGO"
-				"MOVIES" => "INTRO"
-				"MOVIES" => "IRONTHRN"
-				"MOVIES" => "LOGO"
-				"MOVIES" => "MINEFLOD"
-				"MOVIES" => "NASHKELL"
-				"MOVIES" => "NITEDAY"
-				"MOVIES" => "PALACE"
-				"MOVIES" => "REST"
-				"MOVIES" => "RESTDUNG"
-				"MOVIES" => "RESTINN"
-				"MOVIES" => "SEWER"
-				"MOVIES" => "TAVERN"
-				"MOVIES" => "TSRLOGO"
-				"MOVIES" => "WOTC"
-				"MOVIES" => "WRECK"
-				"MOVIES" => "WYVERN"
-			END
-			PHP_EACH "table_ini" AS "row" => "option" BEGIN
-				COUNT_REGEXP_INSTANCES ~'%option%'~ num_matches
+			PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
+				COUNT_REGEXP_INSTANCES ~'%movie%'~ num_matches
 				PATCH_IF (num_matches = 0) BEGIN
 					REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
-		'%row%',	'%option%',	'1',~
+	'MOVIES',	'%movie%',	'1',~
 				END
 			END
 		BUT_ONLY
 	END ELSE BEGIN
-	<<<<<<<< BGEEClassicMovies-inlined/Baldur.ini
-	CREATE TABLE options (
-		section string,
-		name string,
-		value string
-	);
-	INSERT INTO options ROWS (
-		'MOVIES',    'BEREGOST',    '1',
-		'MOVIES',    'BG4LOGO',    '1',
-		'MOVIES',    'BGENTER',    '1',
-		'MOVIES',    'BGSUNRIS',    '1',
-		'MOVIES',    'BGSUNSET',    '1',
-		'MOVIES',    'BHAAL',    '1',
-		'MOVIES',    'BILOGO',    '1',
-		'MOVIES',    'BIOWBOTH',    '1',
-		'MOVIES',    'blackpit',    '1',
-		'MOVIES',    'BWDRAGON',    '1',
-		'MOVIES',    'CAMP',    '1',
-		'MOVIES',    'CNDLKEEP',    '1',
-		'MOVIES',    'CREDITS',    '1',
-		'MOVIES',    'DAYNITE',    '1',
-		'MOVIES',    'DEATHAND',    '1',
-		'MOVIES',    'DUNGEON',    '1',
-		'MOVIES',    'DURLAG',    '1',
-		'MOVIES',    'ELDRCITY',    '1',
-		'MOVIES',    'ENDCRDIT',    '1',
-		'MOVIES',    'ENDMOVIE',    '1',
-		'MOVIES',    'FRARMINN',    '1',
-		'MOVIES',    'GNOLL',    '1',
-		'MOVIES',    'INFELOGO',    '1',
-		'MOVIES',    'INTRO',    '1',
-		'MOVIES',    'IRONTHRN',    '1',
-		'MOVIES',    'LOGO',    '1',
-		'MOVIES',    'MINEFLOD',    '1',
-		'MOVIES',    'NASHKELL',    '1',
-		'MOVIES',    'NITEDAY',    '1',
-		'MOVIES',    'PALACE',    '1',
-		'MOVIES',    'REST',    '1',
-		'MOVIES',    'RESTDUNG',    '1',
-		'MOVIES',    'RESTINN',    '1',
-		'MOVIES',    'SEWER',    '1',
-		'MOVIES',    'TAVERN',    '1',
-		'MOVIES',    'TSRLOGO',    '1',
-		'MOVIES',    'WOTC',    '1',
-		'MOVIES',    'WRECK',    '1',
-		'MOVIES',    'WYVERN',    '1',
-	);
-	>>>>>>>>
-		COPY ~BGEEClassicMovies-inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
+<<<<<<<< inlined/Baldur.ini
+CREATE TABLE options (
+	section string,
+	name string,
+	value string
+);
+INSERT INTO options ROWS (
+	'MOVIES',    'BG4LOGO',    '1',
+	'MOVIES',    'BILOGO',    '1',
+	'MOVIES',    'BIOWBOTH',    '1',
+	'MOVIES',    'BWDRAGON',    '1',
+	'MOVIES',    'CREDITS',    '1',
+	'MOVIES',    'INFELOGO',    '1',
+	'MOVIES',    'TSRLOGO',    '1',
+	'MOVIES',    'WOTC',    '1'
+);
+>>>>>>>>
+		COPY ~inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
 	END
 END
 
@@ -194,31 +126,107 @@ LANGUAGE ~Polski (Polish)~
 	~pl_PL~
 	~BGEEClassicMovies/lang/pl_PL/setup.tra~
 
-BEGIN @2
-SUBCOMPONENT @3
-REQUIRE_PREDICATE ENGINE_IS "bgee" @4
+BEGIN @1//Replace all movies
+SUBCOMPONENT @2//Restore BG1 movies to BG:EE
+REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+FORBID_COMPONENT ~BGEE_PL/setup-BGEE_PL.tp2~ 1 ~Filmiki juz zainstalowane wraz z modem BGEE_PL~
 
 ACTION_PHP_EACH dirs AS src => target BEGIN
 	MKDIR ~%target%~
-	COPY_LARGE "%src%" "%target%"
+	ACTION_BASH_FOR "%src_1%" ".*\.wbm$" BEGIN
+		ACTION_IF FILE_EXISTS "%src%/%BASH_FOR_FILE%" BEGIN
+			COPY_LARGE "%src%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+		END ELSE BEGIN
+			COPY_LARGE "%src_1%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+		END
+	END
 END
 
 LAF patch_movidesc END
 INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
 
-BEGIN @5
-SUBCOMPONENT @3
-REQUIRE_PREDICATE ENGINE_IS "bgee" @4
-REQUIRE_PREDICATE (("%LANGUAGE%" STRING_EQUAL_CASE ~pl_PL~)=0) @6
+BEGIN @4//Add missing movies
+SUBCOMPONENT @2//Restore BG1 movies to BG:EE
+REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+REQUIRE_PREDICATE (("%LANGUAGE%" STRING_EQUAL_CASE ~pl_PL~)=0) @5//This component is not compatible with the chosen language
 
 ACTION_PHP_EACH dirs AS src => target BEGIN
 	MKDIR ~%target%~
-	ACTION_BASH_FOR "%src%" ".*\.wbm$" BEGIN
-		ACTION_IF !FILE_EXISTS "%target%/%BASH_FOR_FILE%" BEGIN
-			COPY_LARGE "%BASH_FOR_FILESPEC%" "%target%/%BASH_FOR_FILE%"
+	ACTION_BASH_FOR "%src_1%" ".*\.wbm$" BEGIN
+		ACTION_IF !FILE_EXISTS "%target%/%BASH_FOR_FILE%" AND !FILE_EXISTS "movies/%BASH_FOR_FILE%" BEGIN
+			ACTION_IF FILE_EXISTS "%src%/%BASH_FOR_FILE%" BEGIN
+				COPY_LARGE "%src%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+			END ELSE BEGIN
+				COPY_LARGE "%src_1%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+			END
 		END
 	END
 END
 
 LAF patch_movidesc INT_VAR f_Replace = 0 END
 INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
+
+BEGIN @6//Show all movies in options without need to unlock them in game
+REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+
+ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.ini~) BEGIN
+	COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%~
+		PATCH_FOR_EACH movie IN WYVERN WRECK WOTC TSRLOGO TAVERN SEWER RESTINN RESTDUNG REST PALACE NITEDAY NASHKELL MINEFLOD LOGO IRONTHRN INTRO INFELOGO GNOLL FRARMINN ENDMOVIE ENDCRDIT ELDRCITY DURLAG DUNGEON DEATHAND DAYNITE CREDITS CNDLKEEP CAMP BWDRAGON BLACKPIT BIOWBOTH BILOGO BHAAL BGSUNSET BGSUNRIS BGENTER BG4LOGO BEREGOST BEGIN
+			COUNT_REGEXP_INSTANCES ~'%movie%'~ num_matches
+			PATCH_IF (num_matches = 0) BEGIN
+				REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
+	'MOVIES',	'%movie%',	'1',~
+			END
+		END
+	BUT_ONLY
+END ELSE BEGIN
+<<<<<<<< inlined/Baldur.ini
+CREATE TABLE options (
+	section string,
+	name string,
+	value string
+);
+INSERT INTO options ROWS (
+    'MOVIES',    'BEREGOST',    '1',
+    'MOVIES',    'BG4LOGO',    '1',
+    'MOVIES',    'BGENTER',    '1',
+    'MOVIES',    'BGSUNRIS',    '1',
+    'MOVIES',    'BGSUNSET',    '1',
+    'MOVIES',    'BHAAL',    '1',
+    'MOVIES',    'BILOGO',    '1',
+    'MOVIES',    'BIOWBOTH',    '1',
+    'MOVIES',    'BLACKPIT',    '1',
+    'MOVIES',    'BWDRAGON',    '1',
+    'MOVIES',    'CAMP',    '1',
+    'MOVIES',    'CNDLKEEP',    '1',
+    'MOVIES',    'CREDITS',    '1',
+    'MOVIES',    'DAYNITE',    '1',
+    'MOVIES',    'DEATHAND',    '1',
+    'MOVIES',    'DUNGEON',    '1',
+    'MOVIES',    'DURLAG',    '1',
+    'MOVIES',    'ELDRCITY',    '1',
+    'MOVIES',    'ENDCRDIT',    '1',
+    'MOVIES',    'ENDMOVIE',    '1',
+    'MOVIES',    'FRARMINN',    '1',
+    'MOVIES',    'GNOLL',    '1',
+    'MOVIES',    'INFELOGO',    '1',
+    'MOVIES',    'INTRO',    '1',
+    'MOVIES',    'IRONTHRN',    '1',
+    'MOVIES',    'LOGO',    '1',
+    'MOVIES',    'MINEFLOD',    '1',
+    'MOVIES',    'NASHKELL',    '1',
+    'MOVIES',    'NITEDAY',    '1',
+    'MOVIES',    'PALACE',    '1',
+    'MOVIES',    'REST',    '1',
+    'MOVIES',    'RESTDUNG',    '1',
+    'MOVIES',    'RESTINN',    '1',
+    'MOVIES',    'SEWER',    '1',
+    'MOVIES',    'TAVERN',    '1',
+    'MOVIES',    'TSRLOGO',    '1',
+    'MOVIES',    'WOTC',    '1',
+    'MOVIES',    'WRECK',    '1',
+    'MOVIES',    'WYVERN',    '1'
+);
+>>>>>>>>
+	COPY ~inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
+END
