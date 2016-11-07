@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="UTF-8">
     <style type="text/css">
+    /*<![CDATA[*/
+    <!-- 
       body {
         margin: 0;
         padding: 0;
@@ -75,7 +76,7 @@
       }
       h2 {
         display: block;
-        font-family: Verdana, Tahoma, Arial, sans-serif;
+        font-family: Verdana, Trebuchet MS, Arial, serif;
         text-align: left;
         text-indent: 30px;
         padding: 0px;
@@ -98,17 +99,14 @@
         width: 90%;
         display: block;
       }
-      #maindiv address a:link {
+      #maindiv address a:link,
+      #maindiv address a:visited {
         font-weight: bold;
         text-decoration: underline;
         background-color: transparent;
         color: #eaeaea !important;
         padding-right: 5px;
         padding-left: 6px;
-      }
-      #maindiv address a:visited {
-        background-color: transparent;
-        color: #eaeaea !important;
       }
       #maindiv address a:focus,
       #maindiv address a:hover {
@@ -139,7 +137,7 @@
       }
       #maindiv .important {
         font-size: 95%;
-        font-family: Verdana, Tahoma, Arial, sans-serif;
+        font-family: Verdana;
         text-align: left;
         background-color: #F1F1F1;
         border-top: solid 1px #aaa;
@@ -161,11 +159,11 @@
       }
       #maindiv ul {
         margin: -10px 0 0 30px;
-        margin-left: 35px;
+        *margin-left: 65px;
       }
       #maindiv ol {
         margin: -10px 0 0 35px;
-        margin-left: 40px;
+        *margin-left: 70px;
       }
       #maindiv .important ul {
         margin: -10px 0 0 15px;
@@ -182,16 +180,19 @@
       }
       .t1 {
         font-weight: bold;
-        width: 16%;
+        width: 26%;
         text-align: right;
         clear: right;
         float: left;
+        *float: none;
+        *margin-left: 65px;
         line-height: 22px;
       }
       .t2 {
         text-align: left;
-        width: 83%;
+        width: 73%;
         float: right;
+        *float: none;
         line-height: 22px;
       }
       hr {
@@ -206,6 +207,8 @@
         clear: both;
         color: #e8e8e6;
         background-color: #e8e8e6;
+        *margin: 0;
+        *padding: 0;
       }
       h1 {
         font-size: 225%;
@@ -243,37 +246,37 @@
         border-bottom: solid 1px #bbb;
         border-top: solid 1px #bbb;
       }
-      a:link {
+      a:link,
+      a:visited {
         color: #781808;
         font-weight: bold;
         text-decoration: none;
-      }
-      a:visited {
-        color: #781808;
       }
       a:hover,
       a:active {
         color: #222;
         border-bottom: 1px solid black;
       }
+    -->
+    /*]]>*/
     </style>
     <title>BG: EE Classic Movies</title>
-    <link rel="icon" href="http://www.shsforums.net/favicon.ico" />
+    <link REL="SHORTCUT ICON" HREF="http://www.shsforums.net/favicon.ico">
   </head>
   <body>
+    <a name="top" id="top"></a>
     <div id="wrap">
       <div id="header">
-        <a id="top"></a>
         <h1>BG: EE Classic Movies</h1>
         <strong>A Spellhold Studios mod for Baldur's Gate: Enhanced Edition</strong>
         <hr />
         <p class="about">
-          Authors: <a href="http://www.shsforums.net/user/10485-sam/">Sam.</a>
+          Author: Sam.
         </p>
         <p class="about">
           <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Mod Website</a> &#8226;
           <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Mod Forum</a> &#8226;
-          Version: 0.05
+          Version: 0.04
         </p>
         <hr />
         <p class="menu">
@@ -287,97 +290,142 @@
       <div id="maindiv">
 
         <!-- ================== I n t r o d u c t i o n ================== -->
-        <a id="intro"></a>
+        <a name="intro" id="intro"></a>
         <div class="content">
           <h2>Introduction</h2>
-          <p>This is a WeiDU mod that restores the 'classic' movies from the original Baldur's Gate and select movies from Baldur's Gate II to Baldur's Gate:  Enhanced Edition.  The classic movies have been resized to the same dimensions as the new BG:EE movies (1280x720, 852x480, and 512x288) while maintaining their aspect ratios.  It also re-enables the Beregost movie when you first travel to the area and restores a movie to the Elfsong Tavern that was cut from the original game.  This mod was developed for Baldur's Gate Enhanced Edition v1.3.2053 and will be considered a beta version as long as BG:EE is being updated.  Use at your own risk!  Questions, comments, suggestions, and bug reports are of course welcome.</p>
-          <h5>The restored movies include:</h5>
-          <br />
+          <p>This is a WeiDU mini-mod that restores the classic movies from the original Baldur’s Gate and select movies from Baldur’s Gate II to Baldur’s Gate:  Enhanced Edition.  The classic movies have been resized to the same dimensions as the new BG:EE movies (1280x720) while maintaining their aspect ratios.  It also re-enables the Beregost movie when you first travel to the area.  This mod was developed for Baldur's Gate Enhanced Edition v1.0.2010, and will be considered a beta version as long as BG:EE is being updated.  Use at your own risk!  Questions, comments, suggestions, and bug reports are of course welcome.</p>
+	  <h5>The restored movies include:</h5>
+	  <br />
           <ul>
-            <li>Beregost</li>
-            <li>Black Isle Logo</li>
-            <li>Entering Baldur's Gate</li>
-            <li>BG Sunrise movie</li>
-            <li>BG Sunset movie</li>
-            <li>The Temple of Bhaal</li>
-            <li>BioWare Logo</li>
-            <li>Bioware logo movie</li>
-            <li>Bioware logo movie</li>
-            <li>Bandit Camp</li>
-            <li>Inside Candle Keep</li>
-            <li>Credits</li>
-            <li>Sunset movie</li>
-            <li>Death movie</li>
-            <li>The Dungeon</li>
-            <li>Entering Durlag's Tower</li>
-            <li>The Eldercity</li>
-            <li>End Movie</li>
-            <li>Conclusion</li>
-            <li>The Friendly Arm Inn</li>
-            <li>The Gnoll Stronghold</li>
-            <li>Infinity Engine Logo</li>
-            <li>Introduction</li>
-            <li>The Iron Throne</li>
-            <li>The Flooded Mine</li>
-            <li>Entering Nashkel</li>
-            <li>Sunrise movie</li>
-            <li>The Ducal Palace</li>
-            <li>Resting outside movie</li>
-            <li>Resting in dungeon movie</li>
-            <li>Resting at inn movie</li>
-            <li>The Sewers</li>
-            <li>The Tavern</li>
-            <li>TSR Logo</li>
-            <li>WOTC Logo</li>
-            <li>Across the Trackless Sea</li>
-            <li>The Wyvern</li>
+	    <li>Beregost</li>
+	    <li>Black Isle Logo</li>
+	    <li>Entering Baldur's Gate</li>
+	    <li>BG Sunrise movie</li>
+	    <li>BG Sunset movie</li>
+	    <li>The Temple of Bhaal</li>
+	    <li>BioWare Logo</li>
+	    <li>Bioware logo movie</li>
+	    <li>The Black Pits</li>
+	    <li>Bioware logo movie</li>
+	    <li>Bandit Camp</li>
+	    <li>Inside Candle Keep</li>
+	    <li>Credits</li>
+	    <li>Sunset movie</li>
+	    <li>Death movie</li>
+	    <li>The Dungeon</li>
+	    <li>Entering Durlag's Tower</li>
+	    <li>The Eldercity</li>
+	    <li>End Movie</li>
+	    <li>Conclusion</li>
+	    <li>The Friendly Arm Inn</li>
+	    <li>The Gnoll Stronghold</li>
+	    <li>Infinity Engine Logo</li>
+	    <li>Introduction</li>
+	    <li>The Iron Throne</li>
+	    <li>The Flooded Mine</li>
+	    <li>Entering Nashkel</li>
+	    <li>Sunrise movie</li>
+	    <li>The Ducal Palace</li>
+	    <li>Resting outside movie</li>
+	    <li>Resting in dungeon movie</li>
+	    <li>Resting at inn movie</li>
+	    <li>The Sewers</li>
+	    <li>The Tavern</li>
+	    <li>TSR Logo</li>
+	    <li>WOTC Logo</li>
+	    <li>Across the Trackless Sea</li>
+	    <li>The Wyvern</li>
           </ul>
-          <address>
+	  <address>
             <span class="footer">BG: EE Classic Movies &gt; Introduction</span> &#8226;<a href="#top">BACK TO TOP</a>
           </address>
         </div>
 
         <!-- ================== I n s t a l l a t i o n ================== -->
-        <a id="installation"></a>
+        <a name="installation" id="installation"></a>
         <div class="content">
           <h2>Installation</h2>
-          <p>This is a WeiDU mod.  To install, unzip the RAR archive into the Baldur's Gate: Enhanced Edition game folder <strong>that has the chitin.key file</strong> (usually "Baldur's Gate Enhanced Edition\Data\00766") and double-click on setup-BGEEClassicMovies.exe.  Follow the command prompts to install the desired components.  To uninstall, double-click on setup-BGEEClassicMovies.exe again and select the Uninstall option.</p>
-          <p>If you have followed the above steps and the mod is still not installing properly, you might find reading <a href="http://www.shsforums.net/topic/41036-faq-for-the-megamods/#entry504045">The common Windows Vista and Windows 7 problems</a> helpful.  Particularly, sections 2.1, 2.2.1, and 2.2.2.</p>
+          <p>First of all, please read <a href="http://forum.baldursgate.com/discussion/6950/player-how-to-getting-mods-to-work-on-bgee/p1">Player how-to: Getting mods to work on BGEE</a>.</p>
+          <p>This is a WeiDU mod.  To install, unzip the RAR archive into your game folder <b>that has the chitin.key file</b> (usually "Baldur's Gate Enhanced Edition\Data\00766") and double-click on Setup-BGEEClassicMovies.exe.  To uninstall, double-click on BGEEClassicMovies.exe again and select the Uninstall option.</p>
+	  <p>Additionally, you will need to edit your Baldur.ini file by hand.  This is necessary in order to play the movies not used by BG:EE in the Movies GUI dialog.  It is usually located at "Documents\Baldur's Gate - Enhanced Edition\Baldur.ini" in Win 7 and at "My Documents\Baldur's Gate - Enhanced Edition\Baldur.ini" in Win XP.  You will need to add these entries:</p>
+          <div class="important">
+            <p>
+	'MOVIES',	'BEREGOST',	'1',	<br />
+	'MOVIES',	'BG4LOGO',	'1',	<br />
+	'MOVIES',	'BGENTER',	'1',	<br />
+	'MOVIES',	'BGSUNRIS',	'1',	<br />
+	'MOVIES',	'BGSUNSET',	'1',	<br />
+	'MOVIES',	'BHAAL',	'1',	<br />
+	'MOVIES',	'BILOGO',	'1',	<br />
+	'MOVIES',	'BIOWBOTH',	'1',	<br />
+	'MOVIES',	'BLACKPIT',	'1',	<br />
+	'MOVIES',	'BWDRAGON',	'1',	<br />
+	'MOVIES',	'CAMP',		'1',	<br />
+	'MOVIES',	'CNDLKEEP',	'1',	<br />
+	'MOVIES',	'CREDITS',	'1',	<br />
+	'MOVIES',	'DAYNITE',	'1',	<br />
+	'MOVIES',	'DEATHAND',	'1',	<br />
+	'MOVIES',	'DUNGEON',	'1',	<br />
+	'MOVIES',	'DURLAG',	'1',	<br />
+	'MOVIES',	'ELDRCITY',	'1',	<br />
+	'MOVIES',	'ENDCRDIT',	'1',	<br />
+	'MOVIES',	'ENDMOVIE',	'1',	<br />
+	'MOVIES',	'FRARMINN',	'1',	<br />
+	'MOVIES',	'GNOLL',	'1',	<br />
+	'MOVIES',	'INFELOGO',	'1',	<br />
+	'MOVIES',	'INTRO',	'1',	<br />
+	'MOVIES',	'IRONTHRN',	'1',	<br />
+	'MOVIES',	'MINEFLOD',	'1',	<br />
+	'MOVIES',	'NASHKELL',	'1',	<br />
+	'MOVIES',	'NITEDAY',	'1',	<br />
+	'MOVIES',	'PALACE',	'1',	<br />
+	'MOVIES',	'REST',		'1',	<br />
+	'MOVIES',	'RESTDUNG',	'1',	<br />
+	'MOVIES',	'RESTINN',	'1',	<br />
+	'MOVIES',	'SEWER',	'1',	<br />
+	'MOVIES',	'TAVERN',	'1',	<br />
+	'MOVIES',	'TSRLOGO',	'1',	<br />
+	'MOVIES',	'WOTC',		'1',	<br />
+	'MOVIES',	'WRECK',	'1',	<br />
+	'MOVIES',	'WYVERN',	'1',	<br />
+            </p>
+          </div>
+            <p>If you have followed the above steps and the mod is still not installing properly, you might find reading <a href="http://www.shsforums.net/topic/41036-faq-for-the-megamods/page__p__504045#entry504045">The common Windows Vista and Windows 7 problems</a> helpful.  Particularly, sections 2.1, 2.2.1, and 2.2.2.</p>
           <address>
-            <span class="footer">BG: EE Classic Movies &gt; Installation</span> <a href="#top">BACK TO TOP</a>
+            <span class="footer">BG: EE Classic Movies &gt; Installation</span> &#8226;<a href="#top">BACK TO TOP</a>
           </address>
         </div>
 
         <!-- ================== F A Q ================== -->
-        <a id="faq"></a>
+        <a name="faq" id="faq"></a>
         <div class="content">
           <h2>Frequently Asked Questions</h2>
-          <p><strong>Q: Why does MOVIDESC.2DA and Baldur.ini need to be modified?</strong><br />A: The Baldur.ini and MOVIDESC.2DA are modified so that all of the movies can be viewed in the "Movies" dialog of the GUI.  Since not all of the movies from BG1 are actually used in BG:EE, this is the only way to watch them.</p>
+          <p><strong>Q: When I run the installer, I get this error:  <i>FATAL ERROR: Failure("Unable to find DIALOG.TLK")</i>.  How do I get it to install?</strong><br />A: Read the section on <a href="#installation">Installation</a>, and follow the instructions in the in the link (Player how-to: Getting mods to work on BGEE) provided.</p>
+          <p><strong>Q: Why does MOVIDESC.2DA and Baldur.ini need to be modified?</strong><br />A: The Baldur.ini and MOVIDESC.2DA are modified so that all of the movies can be viewed in the "Movies" dialog of the GUI.  Since not all of the movies from BG1 are actually used in BGEE, this is the only way to watch them.</p>
           <address>
             <span class="footer">BG: EE Classic Movies &gt; FAQ</span> &#8226;<a href="#top">BACK TO TOP</a>
           </address>
         </div>
 
         <!-- ================== C r e d i t s ================== -->
-        <a id="credits"></a>
+        <a name="credits" id="credits"></a>
         <div class="content">
           <h2>Credits</h2>
-          <p>Thanks to <a href="http://www.shsforums.net/user/9711-wisp/">Wisp</a> for writing the initial WeiDU code and <a href="http://www.shsforums.net/user/6375-k4thos/">K4thos</a> for updating and maintaining it.</p>
+          <p>Thanks to <a href="http://www.shsforums.net/user/9711-wisp/">Wisp</a> for writing the WeiDU code!</p>
+	  <h3>Tools used:</h3>
           <ul>
             <li><a href="http://www.shsforums.net/topic/39117-ps-gui-v304/">PS gui</a></li>
             <li><a href="http://www.shsforums.net/topic/45358-nearinfinity/">NearInfinity</a></li>
-            <li><a href="http://firefogg.org/">Firefogg</a></li>
-            <li><a href="http://www.weidu.org/~thebigg/">WeiDU</a></li>
-            <li><a href="http://www.adobe.com/products/premiere.html">Adobe Premiere Pro</a></li>
+            <li><a href="http://firefogg.org/make/">Firefogg</a></li>
+            <li><a href="http://www.weidu.org/users/thebigg/">WeiDU</a></li>
           </ul>
-          <hr class="floatfix" /><!-- Don't remove the <hr /> unless you have text following the last "t2" in this <div>! -->
           <address>
             <span class="footer">BG: EE Classic Movies &gt; Credits</span> &#8226;<a href="#top">BACK TO TOP</a>
           </address>
         </div>
 
         <!-- ================== V e r s i o n   H i s t o r y ================== -->
-        <a id="version"></a>
+        <a name="version" id="version"></a>
         <div class="content">
           <h2>Version history</h2>
           <h6>05 December 2012 - Version 0.01:</h6>
@@ -396,15 +444,6 @@
           <ul>
             <li>Added BWDRAGON (Bioware logo movie) and WOTC (WOTC Logo) from BGII.</li>
             <li>All movies were resized to the same dimensions (1280x720) as the new BG:EE movies while maintaining their aspect ratios.</li>
-          </ul>
-          <h6>23 January 2015 - Version 0.05:</h6>
-          <ul>
-            <li>Upgraded to latest version of WeiDU, which is now BG:EE compatible.</li>
-            <li>Manual edit to Baldur.ini is no longer necessary.  The installer does it for you.</li>
-            <li>Re-encoded hi-res (1280x720) movies with Denoise filter.</li>
-            <li>Included medium-res (852x480) and lo-res (512x288) versions of movies.</li>
-            <li>Restored TAVERN movie to Elfsong Tavern.</li>
-            <li>Updated documentation.</li>
           </ul>
           <address>
             <span class="footer">BG: EE Classic Movies &gt; Version History</span> &#8226;<a href="#top">BACK TO TOP</a>
