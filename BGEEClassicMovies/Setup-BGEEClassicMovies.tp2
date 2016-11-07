@@ -1,11 +1,11 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR Sam. // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
 
-VERSION ~v0.04~
+VERSION ~v0.05~
 README ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
-//Developed for Baldur's Gate Enhanced Edition v1.0.2010
-//Coded by Wisp
+//Developed for Baldur's Gate Enhanced Edition v1.3
+//Coded by Wisp, updated by K4thos
 
 ALWAYS
   ACTION_DEFINE_ASSOCIATIVE_ARRAY dirs BEGIN
@@ -22,7 +22,7 @@ ALWAYS
 	BHAAL => 19661
 	BILOGO => 20699
 	BIOWBOTH => 25280
-	BLACKPIT => 31833
+	blackpit => 31833
 	BWDRAGON => 25280
 	CAMP => 19662
 	CNDLKEEP => 19663
@@ -39,6 +39,7 @@ ALWAYS
 	INFELOGO => 20700
 	INTRO => 19669
 	IRONTHRN => 19670
+	//logo => ~Beamdog Logo~
 	MINEFLOD => 19671
 	NASHKELL => 19672
 	NITEDAY => 25274
