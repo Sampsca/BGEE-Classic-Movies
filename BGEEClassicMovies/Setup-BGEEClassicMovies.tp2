@@ -1,6 +1,6 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR ~Sam.~ // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
-VERSION ~v2.0.0~
+VERSION ~v2.1.0~
 README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
 //Developed for Baldur's Gate Enhanced Edition v1.3+
@@ -183,6 +183,9 @@ LANGUAGE ~Polski (Polish)~
 LANGUAGE ~Espanol (Spanish)~
 	~es_ES~
 	~BGEEClassicMovies/lang/es_ES/setup.tra~
+LANGUAGE ~Deutsch (German)~
+	~de_DE~
+	~BGEEClassicMovies/lang/de_DE/setup.tra~
 
 BEGIN @1//Replace all movies
 SUBCOMPONENT @2//Restore BG1 movies to BG:EE
