@@ -1,6 +1,6 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR ~Sam.~ // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
-VERSION ~v2.1.0~
+VERSION ~v2.2.0~
 README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 
 //Developed for Baldur's Gate Enhanced Edition v1.3+
@@ -294,7 +294,11 @@ BEGIN @16 //Restore BG1 Chapter and Dream Screens
 REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
 
 ACTION_IF GAME_INCLUDES ~sod~ BEGIN
-  OUTER_SPRINT game ~SoD~
+  ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ BEGIN
+    OUTER_SPRINT game ~BGEEThemeOnSoD~
+  END ELSE BEGIN
+    OUTER_SPRINT game ~SoD~
+  END
 END ELSE BEGIN
   OUTER_SPRINT game ~BGEE~
 END
