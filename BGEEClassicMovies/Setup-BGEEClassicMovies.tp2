@@ -332,5 +332,10 @@ ACTION_IF (~%game%~ STRING_EQUAL_CASE ~BGEE~ = 1) BEGIN // Support BGEE theme va
   COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
   COPY_EXISTING ~LEAVE.mos~ ~override/LEAVEA.mos~
   COPY_EXISTING ~TOSCEND.mos~ ~override/TOSCENDA.mos~
+END ELSE ACTION_IF (~%game%~ STRING_EQUAL_CASE ~SoD~ = 1) BEGIN // Support original SoD theme while minimizing usage of PVRZ pages
+  COPY_EXISTING ~GUICHP9B.mos~ ~override/GUICHP10.mos~
+  COPY_EXISTING ~GUICHP9B.mos~ ~override/GUICHP11.mos~
+  COPY_EXISTING ~GUICHP9B.mos~ ~override/GUICHP12.mos~
+  COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
 END
 
