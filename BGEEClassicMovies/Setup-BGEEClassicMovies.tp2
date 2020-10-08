@@ -295,7 +295,7 @@ REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
 
 ACTION_IF GAME_INCLUDES ~sod~ BEGIN
   ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ BEGIN
-    OUTER_SPRINT game ~BGEEThemeOnSoD~
+    OUTER_SPRINT game ~BGEE~
   END ELSE BEGIN
     OUTER_SPRINT game ~SoD~
   END
@@ -313,5 +313,24 @@ ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%game%/MOSV2~ ~^.+\.mos$~ BEGIN
     LAF INSTALL_PVRZ INT_VAR original_base_index new_base_index STR_VAR source_file = EVAL ~%MOD_FOLDER%/chapdrm/%game%/MOSV2/MOS%formatted_original_base_index%.PVRZ~ END
   END
 END
-
+ACTION_IF (~%game%~ STRING_EQUAL_CASE ~BGEE~ = 1) BEGIN // Support BGEE theme variants while minimizing usage of PVRZ pages
+  COPY_EXISTING ~ARRIVE.mos~ ~override/ARRIVEA.mos~
+  COPY_EXISTING ~GUICHP0B.mos~ ~override/GUICHP0A.mos~
+  COPY_EXISTING ~GUICHP1B.mos~ ~override/GUICHP1A.mos~
+  COPY_EXISTING ~GUICHP2B.mos~ ~override/GUICHP2A.mos~
+  COPY_EXISTING ~GUICHP3B.mos~ ~override/GUICHP3A.mos~
+  COPY_EXISTING ~GUICHP4B.mos~ ~override/GUICHP4A.mos~
+  COPY_EXISTING ~GUICHP5B.mos~ ~override/GUICHP5A.mos~
+  COPY_EXISTING ~GUICHP6B.mos~ ~override/GUICHP6A.mos~
+  COPY_EXISTING ~GUICHP7B.mos~ ~override/GUICHP7A.mos~
+  COPY_EXISTING ~GUICHP8B.mos~ ~override/GUICHP8A.mos~
+  COPY_EXISTING ~GUIDRM2.mos~ ~override/GUIDRM2B.mos~
+  COPY_EXISTING ~GUIDRM3.mos~ ~override/GUIDRM3B.mos~
+  COPY_EXISTING ~GUIDRM4.mos~ ~override/GUIDRM4B.mos~
+  COPY_EXISTING ~GUIDRM5.mos~ ~override/GUIDRM5B.mos~
+  COPY_EXISTING ~GUIDRM6.mos~ ~override/GUIDRM6B.mos~
+  COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
+  COPY_EXISTING ~LEAVE.mos~ ~override/LEAVEA.mos~
+  COPY_EXISTING ~TOSCEND.mos~ ~override/TOSCENDA.mos~
+END
 
