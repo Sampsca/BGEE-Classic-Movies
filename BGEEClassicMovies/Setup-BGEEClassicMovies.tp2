@@ -2,6 +2,7 @@ BACKUP "BGEEClassicMovies/backup"
 AUTHOR ~Sam.~ // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
 VERSION ~v2.2.0~
 README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
+MODDER
 
 //Developed for Baldur's Gate Enhanced Edition v1.3+
 //Coded by Wisp, K4thos, and Sam.
@@ -72,20 +73,20 @@ ALWAYS
 				READ_2DA_ENTRY_FORMER movidesc i 0 movie
 				READ_2DA_ENTRY_FORMER movidesc i 1 strref
 				TO_UPPER movie
-				SET $movidesc("%movie%") = strref
+				SET $Amovidesc("%movie%") = strref
 			END
 			PHP_EACH movidesc_map AS m => s BEGIN
 				TO_UPPER m
 				PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
 					PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
 						PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-							PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND !VARIABLE_IS_SET $movidesc("%m%") BEGIN
+							PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND !VARIABLE_IS_SET $Amovidesc("%m%") BEGIN
 								INSERT_2DA_ROW movidesc 2 "%m% %s%"
-								SET $movidesc("%m%") = s
+								SET $Amovidesc("%m%") = s
 							END
-							PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND f_Replace AND $movidesc("%m%") != s BEGIN
+							PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND f_Replace AND $Amovidesc("%m%") != s BEGIN
 								REPLACE_TEXTUALLY "^%m%[ %TAB%]+[0-9]+" "%m% %s%"
-								SET $movidesc("%m%") = s
+								SET $Amovidesc("%m%") = s
 							END
 						END
 					END
@@ -189,7 +190,7 @@ LANGUAGE ~Deutsch (German)~
 
 BEGIN @1//Replace all movies
 SUBCOMPONENT @2//Restore BG1 movies to BG:EE
-REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
 FORBID_COMPONENT ~BGEE_PL/setup-BGEE_PL.tp2~ 1 ~Filmiki juz zainstalowane wraz z modem BGEE_PL~
 
 ACTION_PHP_EACH dirs AS src => target BEGIN
@@ -209,7 +210,7 @@ INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
 
 BEGIN @4//Add missing movies
 SUBCOMPONENT @2//Restore BG1 movies to BG:EE
-REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
 REQUIRE_PREDICATE (("%LANGUAGE%" STRING_EQUAL_CASE ~pl_PL~)=0) @5//This component is not compatible with the chosen language
 
 ACTION_PHP_EACH dirs AS src => target BEGIN
@@ -230,7 +231,7 @@ LAF patch_movidesc INT_VAR f_Replace = 1 END
 INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
 
 BEGIN @6//Show all movies in options without need to unlock them in game
-REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
 
 ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.lua~) BEGIN
 	COPY ~%USER_DIRECTORY%/Baldur.lua~ ~%USER_DIRECTORY%/Baldur.lua~
@@ -291,29 +292,57 @@ INSERT INTO options ROWS (
 END
 
 BEGIN @16 //Restore BG1 Chapter and Dream Screens
-REQUIRE_PREDICATE ENGINE_IS "bgee" @3//This mod is only available for BG:EE
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
 
-ACTION_IF GAME_INCLUDES ~sod~ BEGIN
-  ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ BEGIN
-    OUTER_SPRINT game ~BGEE~
-  END ELSE BEGIN
-    OUTER_SPRINT game ~SoD~
-  END
-END ELSE BEGIN
-  OUTER_SPRINT game ~BGEE~
-END
-ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%game%/MOSV2~ ~^.+\.mos$~ BEGIN
-  COPY ~%BASH_FOR_FILESPEC%~ ~override~
+DEFINE_ACTION_FUNCTION ps_install_mos STR_VAR path = "" filespec = "" newname = "" BEGIN
+  COPY ~%filespec%~ ~override%newname%~
     LPF UPDATE_PVRZ_INDICES RET original_base_index new_base_index END
   ACTION_IF (original_base_index >= 0 && new_base_index >= 0) BEGIN
     OUTER_SPRINT formatted_original_base_index ~0000%original_base_index%~
     OUTER_PATCH_SAVE formatted_original_base_index ~%formatted_original_base_index%~ BEGIN // Format the var to be exactly 4 digits (padded with 0s)
       DELETE_BYTES 0 (BUFFER_LENGTH - 4)
     END
-    LAF INSTALL_PVRZ INT_VAR original_base_index new_base_index STR_VAR source_file = EVAL ~%MOD_FOLDER%/chapdrm/%game%/MOSV2/MOS%formatted_original_base_index%.PVRZ~ END
+    LAF INSTALL_PVRZ INT_VAR original_base_index new_base_index STR_VAR source_file = EVAL ~%path%/MOS%formatted_original_base_index%.PVRZ~ END
   END
 END
-ACTION_IF (~%game%~ STRING_EQUAL_CASE ~BGEE~ = 1) BEGIN // Support BGEE theme variants while minimizing usage of PVRZ pages
+
+
+//ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ AND NOT GAME_INCLUDES ~SoD~ BEGIN
+//  OUTER_SPRINT theme ~BGEE~
+//END ELSE 
+ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ BEGIN
+  OUTER_SPRINT theme ~BGEE~
+END ELSE ACTION_IF MOD_IS_INSTALLED ~LeUI-SoD.tp2~ ~0~ BEGIN
+  OUTER_SPRINT theme ~SoD~
+END ELSE ACTION_IF MOD_IS_INSTALLED ~LeUI.tp2~ ~0~ BEGIN
+  OUTER_SPRINT theme ~BG2EE~
+END ELSE ACTION_IF MOD_IS_INSTALLED ~EET.tp2~ ~0~ AND NOT MOD_IS_INSTALLED ~EET_gui.TP2~ ~0~ BEGIN
+  OUTER_SPRINT theme ~BG2EE~
+END ELSE ACTION_IF MOD_IS_INSTALLED ~EET_gui.tp2~ ~0~ AND NOT MOD_IS_INSTALLED ~IWD-IN-EET.TP2~ ~0~ BEGIN
+  OUTER_SPRINT theme ~SoD~
+END ELSE ACTION_IF GAME_INCLUDES ~SoD~ BEGIN
+  OUTER_SPRINT theme ~SoD~
+END ELSE BEGIN
+OUTER_SPRINT theme ~BGEE~
+END
+
+PRINT ~Using theme: %theme%~
+
+//ACTION_IF GAME_INCLUDES ~sod~ BEGIN
+//  ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ BEGIN
+//    OUTER_SPRINT theme ~BGEE~
+//  END ELSE BEGIN
+//    OUTER_SPRINT theme ~SoD~
+//  END
+//END ELSE BEGIN
+//  OUTER_SPRINT theme ~BGEE~
+//END
+
+/*
+ACTION_IF (~%theme%~ STRING_EQUAL_CASE ~BGEE~ = 1) BEGIN // Support BGEE theme on BGEE while minimizing usage of PVRZ pages
+  ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ ~^.+\.mos$~ BEGIN
+    LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ filespec = EVAL ~%BASH_FOR_FILESPEC%~ END
+  END
   COPY_EXISTING ~ARRIVE.mos~ ~override/ARRIVEA.mos~
   COPY_EXISTING ~GUICHP0B.mos~ ~override/GUICHP0A.mos~
   COPY_EXISTING ~GUICHP1B.mos~ ~override/GUICHP1A.mos~
@@ -332,10 +361,133 @@ ACTION_IF (~%game%~ STRING_EQUAL_CASE ~BGEE~ = 1) BEGIN // Support BGEE theme va
   COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
   COPY_EXISTING ~LEAVE.mos~ ~override/LEAVEA.mos~
   COPY_EXISTING ~TOSCEND.mos~ ~override/TOSCENDA.mos~
-END ELSE ACTION_IF (~%game%~ STRING_EQUAL_CASE ~SoD~ = 1) BEGIN // Support original SoD theme while minimizing usage of PVRZ pages
-  COPY_EXISTING ~GUICHP9B.mos~ ~override/GUICHP10.mos~
-  COPY_EXISTING ~GUICHP9B.mos~ ~override/GUICHP11.mos~
-  COPY_EXISTING ~GUICHP9B.mos~ ~override/GUICHP12.mos~
+*/
+/*END ELSE ACTION_IF (~%theme%~ STRING_EQUAL_CASE ~SoD_Split~ = 1) BEGIN // Support original SoD theme while minimizing usage of PVRZ pages
+  ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ ~^.+\.mos$~ BEGIN
+    LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ filespec = EVAL ~%BASH_FOR_FILESPEC%~ END
+  END
+  ACTION_FOR_EACH file IN ~ARRIVE~ ~LEAVE~ ~TOSCEND~ BEGIN
+    LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/%file%.mos~ END
+  END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUIDRM2.mos~ newname = ~/GUIDRM2B.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUIDRM3.mos~ newname = ~/GUIDRM3B.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUIDRM4.mos~ newname = ~/GUIDRM4B.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUIDRM5.mos~ newname = ~/GUIDRM5B.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUIDRM6.mos~ newname = ~/GUIDRM6B.mos~ END
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP9B.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP10.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP11.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP12.mos~
+  COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
+  COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
   COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
+*/
+/*
+END ELSE ACTION_IF (~%theme%~ STRING_EQUAL_CASE ~SoD~ = 1) OR (~%theme%~ STRING_EQUAL_CASE ~BG2EE~ = 1) BEGIN // Support alternate pure SoD themes while minimizing usage of PVRZ pages
+  ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ ~^.+\.mos$~ BEGIN
+    LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ filespec = EVAL ~%BASH_FOR_FILESPEC%~ END
+  END
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP9B.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP10.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP11.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP12.mos~
+  COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
+  COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
+  COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
+  COPY_EXISTING ~GUIDRM2.mos~ ~override/GUIDRM2B.mos~
+  COPY_EXISTING ~GUIDRM3.mos~ ~override/GUIDRM3B.mos~
+  COPY_EXISTING ~GUIDRM4.mos~ ~override/GUIDRM4B.mos~
+  COPY_EXISTING ~GUIDRM5.mos~ ~override/GUIDRM5B.mos~
+  COPY_EXISTING ~GUIDRM6.mos~ ~override/GUIDRM6B.mos~
+  COPY_EXISTING ~ARRIVEA.mos~ ~override/ARRIVE.mos~
+  COPY_EXISTING ~LEAVEA.mos~ ~override/LEAVE.mos~
+  COPY_EXISTING ~TOSCENDA.mos~ ~override/TOSCEND.mos~
+*/
+/*END ELSE ACTION_IF (~%theme%~ STRING_EQUAL_CASE ~BG2EE~ = 1) BEGIN
+  ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ ~^.+\.mos$~ BEGIN
+    LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ filespec = EVAL ~%BASH_FOR_FILESPEC%~ END
+  END
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP9B.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP10.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP11.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP12.mos~
+  COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
+  COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
+  COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
+  COPY_EXISTING ~GUIDRM2.mos~ ~override/GUIDRM2B.mos~
+  COPY_EXISTING ~GUIDRM3.mos~ ~override/GUIDRM3B.mos~
+  COPY_EXISTING ~GUIDRM4.mos~ ~override/GUIDRM4B.mos~
+  COPY_EXISTING ~GUIDRM5.mos~ ~override/GUIDRM5B.mos~
+  COPY_EXISTING ~GUIDRM6.mos~ ~override/GUIDRM6B.mos~
+  COPY_EXISTING ~ARRIVEA.mos~ ~override/ARRIVE.mos~
+  COPY_EXISTING ~LEAVEA.mos~ ~override/LEAVE.mos~
+  COPY_EXISTING ~TOSCENDA.mos~ ~override/TOSCEND.mos~
+*/
+/*
+END ELSE ACTION_IF (~%theme%~ STRING_EQUAL_CASE ~BGEEonSoD~ = 1) BEGIN // Support BGEE theme variants while minimizing usage of PVRZ pages
+  ACTION_FOR_EACH file IN ~ARRIVE~ ~GUIDRM2~ ~GUIDRM3~ ~GUIDRM4~ ~GUIDRM5~ ~GUIDRM6~ ~GUIDRM7~ ~LEAVE~ ~TOSCEND~ ~ULGOTHST~ BEGIN
+    LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/%file%.mos~ END
+  END
+  COPY_EXISTING ~ARRIVE.mos~ ~override/ARRIVEA.mos~
+  COPY_EXISTING ~GUIDRM2.mos~ ~override/GUIDRM2B.mos~
+  COPY_EXISTING ~GUIDRM3.mos~ ~override/GUIDRM3B.mos~
+  COPY_EXISTING ~GUIDRM4.mos~ ~override/GUIDRM4B.mos~
+  COPY_EXISTING ~GUIDRM5.mos~ ~override/GUIDRM5B.mos~
+  COPY_EXISTING ~GUIDRM6.mos~ ~override/GUIDRM6B.mos~
+  COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
+  COPY_EXISTING ~LEAVE.mos~ ~override/LEAVEA.mos~
+  COPY_EXISTING ~TOSCEND.mos~ ~override/TOSCENDA.mos~
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP0B.mos~ newname = ~/GUICHP0A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP1B.mos~ newname = ~/GUICHP1A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP2B.mos~ newname = ~/GUICHP2A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP3B.mos~ newname = ~/GUICHP3A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP4B.mos~ newname = ~/GUICHP4A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP5B.mos~ newname = ~/GUICHP5A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP6B.mos~ newname = ~/GUICHP6A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP7B.mos~ newname = ~/GUICHP7A.mos~ END
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2~ filespec = EVAL ~%MOD_FOLDER%/chapdrm/BGEE/MOSV2/GUICHP8B.mos~ newname = ~/GUICHP8A.mos~ END
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP9B.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP10.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP11.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP12.mos~
+  COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
+  COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
 END
+*/
+///////////////////////////
+ACTION_BASH_FOR ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ ~^.+\.mos$~ BEGIN
+  LAF ps_install_mos STR_VAR path = EVAL ~%MOD_FOLDER%/chapdrm/%theme%/MOSV2~ filespec = EVAL ~%BASH_FOR_FILESPEC%~ END
+END
+COPY_EXISTING ~ARRIVEA.mos~ ~override/ARRIVE.mos~
 
+COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP9B.mos~
+COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP10.mos~
+COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP11.mos~
+COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP12.mos~
+COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
+COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
+
+COPY_EXISTING ~GUIDRM2.mos~ ~override/GUIDRM2B.mos~
+COPY_EXISTING ~GUIDRM3.mos~ ~override/GUIDRM3B.mos~
+COPY_EXISTING ~GUIDRM4.mos~ ~override/GUIDRM4B.mos~
+COPY_EXISTING ~GUIDRM5.mos~ ~override/GUIDRM5B.mos~
+COPY_EXISTING ~GUIDRM6.mos~ ~override/GUIDRM6B.mos~
+COPY_EXISTING ~GUIDRM7.mos~ ~override/GUIDRM7B.mos~
+
+COPY_EXISTING ~LEAVEA.mos~ ~override/LEAVE.mos~
+COPY_EXISTING ~TOSCENDA.mos~ ~override/TOSCEND.mos~
+
+ACTION_IF NOT GAME_INCLUDES ~SoD~ BEGIN
+  PRINT ~SoD not detected.~
+  COPY_EXISTING ~GUICHP0A.mos~ ~override/GUICHP0B.mos~
+  COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP1B.mos~
+  COPY_EXISTING ~GUICHP2A.mos~ ~override/GUICHP2B.mos~
+  COPY_EXISTING ~GUICHP3A.mos~ ~override/GUICHP3B.mos~
+  COPY_EXISTING ~GUICHP4A.mos~ ~override/GUICHP4B.mos~
+  COPY_EXISTING ~GUICHP5A.mos~ ~override/GUICHP5B.mos~
+  COPY_EXISTING ~GUICHP6A.mos~ ~override/GUICHP6B.mos~
+  COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
+  COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
+END ELSE BEGIN
+  PRINT ~SoD detected.~
+END

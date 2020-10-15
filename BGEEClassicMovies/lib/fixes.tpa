@@ -16,4 +16,4 @@ THEN
 END
 >>>>>>>>
 
-EXTEND_TOP AR0705.bcs ~BGEEClassicMovies-inlined/AR0705.baf~
+EXTEND_TOP AR0705.bcs ~BGEEClassicMovies-inlined/AR0705.baf~ USING ~BGEEClassicMovies/lang/%s/setup.tra~
