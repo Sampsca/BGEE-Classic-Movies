@@ -273,7 +273,7 @@
         <p class="about">
           <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Mod Website</a> &#8226;
           <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Mod Forum</a> &#8226;
-          Version: 2.2.0
+          Version: 2.3.0
         </p>
         <hr>
         <p class="menu">
@@ -290,7 +290,7 @@
         <a id="intro"></a>
         <div class="content">
           <h2>Introduction</h2>
-          <p>This is a WeiDU mod that restores the 'classic' movies from the original Baldur's Gate and select movies from Baldur's Gate II to Baldur's Gate:  Enhanced Edition.  The classic movies have been resized to the same dimensions as the new BG:EE movies (1280x720, 852x480, and 512x288) while maintaining their aspect ratios.  It also re-enables the Beregost movie when you first travel to the area and restores a movie to the Elfsong Tavern that was cut from the original game.  This mod was developed for Baldur's Gate Enhanced Edition v1.3+ and will be considered a beta version as long as BG:EE is being updated.  Note that this mod works with or without the Siege of Dragonspear (SoD) expansion.  Use at your own risk!  Questions, comments, suggestions, and bug reports are of course welcome.</p>
+          <p>This is a WeiDU mod that restores the 'classic' movies from the original Baldur's Gate and select movies from Baldur's Gate II to Baldur's Gate:  Enhanced Edition (BGEE), Baldur's Gate:  Siege of Dragonspear (SoD), and Baldur's Gate:  Enhanced Edition Trilogy (EET).  The classic movies have been resized to the same dimensions as the new BGEE movies (1280x720, 852x480, and 512x288) while maintaining their aspect ratios.  It also re-enables the Beregost movie when you first travel to the area and restores a movie to the Elfsong Tavern that was cut from the original game.  This mod was developed for Baldur's Gate Enhanced Edition v1.3+ and will be considered a beta version as long as these games are being updated.  As of Version 2.0 there is a new component that restores the vanilla BG1 chapter and dream screens to BGEE/SoD/EET (using the appropriate theme).  Note that chapter screens for SoD chapters are not "restored" from the original game since they did not exist in the original game.  Use at your own risk!  Questions, comments, suggestions, and bug reports are of course welcome.</p>
           <h5>The restored movies include:</h5>
           <br>
           <ul>
@@ -332,7 +332,6 @@
             <li>Across the Trackless Sea</li>
             <li>The Wyvern</li>
           </ul>
-          <p>As of Version 2.0 there is a new component that restores the vanilla BG1 chapter and dream screens to BGEE/SoD (using the appropriate theme).  Note that chapter screens for SoD chapters are not "restored" from the original game since they did not exist in the original game.</p>
           <address>
             <span class="footer">BG:EE Classic Movies &gt; Introduction</span> &#8226;<a href="#top">Back To Top</a>
           </address>
@@ -343,7 +342,7 @@
         <div class="content">
           <h2>Installation</h2>
           <p>This mod is broken into two different GitHub branches:  "BGEE-Classic-Movies:master" and "BGEE-Classic-Movies:LowResOnly".  The first one (the "master" branch) contains everything needed to install and use the BG:EE Classic Movies mod.  Under normal circumstances, this is the only part of the mod you will ever need.  The second branch ("LowResOnly") contains the lower resolution versions of the movies (found in the "480" and "lo" folders in the movies folders in the game directory).  I don't think these lower resolution versions are used on the Windows or Mac version of the game, but might be on other platforms (such as i-pad or Android tablet).  If you want to install these along with the high resolution versions of the movies, extract the contents of this archive on top of the contents of the first one <strong>before</strong> installing the mod.  <strong>Be sure to extract relative paths!</strong></p>
-          <p>This is a WeiDU mod.  To install, unzip the latest GitHub Release into the Baldur's Gate: Enhanced Edition game folder <strong>that has the chitin.key file</strong> (usually "Baldur's Gate Enhanced Edition\Data\00766") and double-click on setup-BGEEClassicMovies.exe.  Follow the command prompts to install the desired components.  To uninstall, double-click on setup-BGEEClassicMovies.exe again and select the Uninstall option.</p>
+          <p>This is a WeiDU mod.  To install, unzip the latest GitHub Release into the BGEE, SoD, or EET game folder <strong>that has the chitin.key file</strong> (e.g. "Baldur's Gate Enhanced Edition\Data\00766") and double-click on Setup-BGEEClassicMovies.exe.  Follow the command prompts to install the desired components.  To uninstall, double-click on Setup-BGEEClassicMovies.exe again and select the Uninstall option.</p>
           <p>If you have followed the above steps and the mod is still not installing properly, you might find reading <a href="http://www.shsforums.net/topic/41036-faq-for-the-megamods/#entry504045">The common Windows Vista and Windows 7 problems</a> helpful.  Particularly, sections 2.1, 2.2.1, and 2.2.2.</p>
           <address>
             <span class="footer">BG:EE Classic Movies &gt; Installation</span> <a href="#top">Back To Top</a>
@@ -354,8 +353,8 @@
         <a id="faq"></a>
         <div class="content">
           <h2>Frequently Asked Questions</h2>
-          <p><strong>Q: Why does MOVIDESC.2DA and Baldur.ini (or Baldur.lua) need to be modified?</strong><br>A: The Baldur.ini (or Baldur.lua) and MOVIDESC.2DA are modified so that the movies can be viewed in the "Movies" dialog of the GUI.  Since not all of the movies from BG1 are actually used in BG:EE, this is the only way to watch them.</p>
-          <p><strong>Q: I hear strange noises when some movies are played.</strong><br>A: BG:EE uses a crappy WEBM codec, so if you are having problems with the audio in the moves, this should be resolved in the next patch.  The problem does not occur in the English movies, but in the Polish movies, for example, you can hear strange noises when played in BG:EE.  BG2:EE used to have the same problem, but the newest patch updated the codec and now the engine plays them as expected.</p>
+          <p><strong>Q: Why does MOVIDESC.2DA and Baldur.ini (or Baldur.lua) need to be modified?</strong><br>A: The Baldur.ini (or Baldur.lua) and MOVIDESC.2DA are modified so that the movies can be viewed in the "Movies" dialog of the GUI.  Since not all of the movies from BG1 are actually used in the game, this is the only way to watch them.</p>
+          <p><strong>Q: I hear strange noises when some movies are played.</strong><br>A: BGEE uses a crappy WEBM codec, so if you are having problems with the audio in the moves, this should be resolved in the next patch.  The problem does not occur in the English movies, but in the Polish movies, for example, you can hear strange noises when played in BGEE.  BG2EE used to have the same problem, but the newest patch updated the codec and now the engine plays them as expected.</p>
           <address>
             <span class="footer">BG:EE Classic Movies &gt; FAQ</span> &#8226;<a href="#top">Back To Top</a>
           </address>
@@ -384,6 +383,16 @@
         <a id="version"></a>
         <div class="content">
           <h2>Version history</h2>
+		  <h6>Version 2.3.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">on GitHub</a></h6>
+          <ul>
+            <li>Reduce PVRZ page usage</li>
+            <li>Better support for LeUI-BG1EE theme</li>
+            <li>Support LeUI-SoD theme</li>
+            <li>Support LeUI theme</li>
+            <li>Support EET (these restored movies are higher quality than come with EET)</li>
+            <li>Support EET's SoD theme</li>
+            <li>Support Project Infinity (PI)</li>
+          </ul>
 		  <h6>Version 2.2.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">on GitHub</a></h6>
           <ul>
             <li>Added compatibility with lefreut's Enhanced UI (BG1EE skin) mod</li>
@@ -408,7 +417,7 @@
           </ul>
           <h6>Version 0.05: 25 February 2015</h6>
           <ul>
-            <li>Upgraded to latest version of WeiDU, which is now BG:EE compatible.</li>
+            <li>Upgraded to latest version of WeiDU, which is now BGEE compatible.</li>
             <li>Manual edit to Baldur.ini is no longer necessary.  The installer does it for you.</li>
             <li>Re-encoded hi-res (1280x720) movies to be higher quality.</li>
             <li>Included medium-res (852x480) and lo-res (512x288) versions of movies.</li>
@@ -418,7 +427,7 @@
           <h6>Version 0.04: 12 December 2012</h6>
           <ul>
             <li>Added BWDRAGON (Bioware logo movie) and WOTC (WOTC Logo) from BGII.</li>
-            <li>All movies were resized to the same dimensions (1280x720) as the new BG:EE movies while maintaining their aspect ratios.</li>
+            <li>All movies were resized to the same dimensions (1280x720) as the new BGEE movies while maintaining their aspect ratios.</li>
           </ul>
           <h6>Version 0.03: 06 December 2012</h6>
           <ul>

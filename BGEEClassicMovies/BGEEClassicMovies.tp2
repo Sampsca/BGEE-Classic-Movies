@@ -1,6 +1,6 @@
 BACKUP "BGEEClassicMovies/backup"
 AUTHOR ~Sam.~ // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
-VERSION ~v2.2.0~
+VERSION ~v2.3.0~
 README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
 MODDER
 
@@ -8,143 +8,191 @@ MODDER
 //Coded by Wisp, K4thos, and Sam.
 
 ALWAYS
-	ACTION_DEFINE_ASSOCIATIVE_ARRAY dirs BEGIN
-		"BGEEClassicMovies/movies" , "BGEEClassicMovies/movies" => "movies"
-		"BGEEClassicMovies/movies/480" , "BGEEClassicMovies/movies/480" => "movies/480"
-		"BGEEClassicMovies/movies/lo" , "BGEEClassicMovies/movies/lo" => "movies/lo"
-		"BGEEClassicMovies/lang/%LANGUAGE%/movies" , "BGEEClassicMovies/lang/en_US/movies" => "lang/%LANGUAGE%/movies"
-		"BGEEClassicMovies/lang/%LANGUAGE%/movies/480" , "BGEEClassicMovies/lang/en_US/movies/480" => "lang/%LANGUAGE%/movies/480"
-		"BGEEClassicMovies/lang/%LANGUAGE%/movies/lo" , "BGEEClassicMovies/lang/en_US/movies/lo" => "lang/%LANGUAGE%/movies/lo"
-	END
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY dirs BEGIN
+    "BGEEClassicMovies/movies" , "BGEEClassicMovies/movies" => "movies"
+    "BGEEClassicMovies/movies/480" , "BGEEClassicMovies/movies/480" => "movies/480"
+    "BGEEClassicMovies/movies/lo" , "BGEEClassicMovies/movies/lo" => "movies/lo"
+    "BGEEClassicMovies/lang/%LANGUAGE%/movies" , "BGEEClassicMovies/lang/en_US/movies" => "lang/%LANGUAGE%/movies"
+    "BGEEClassicMovies/lang/%LANGUAGE%/movies/480" , "BGEEClassicMovies/lang/en_US/movies/480" => "lang/%LANGUAGE%/movies/480"
+    "BGEEClassicMovies/lang/%LANGUAGE%/movies/lo" , "BGEEClassicMovies/lang/en_US/movies/lo" => "lang/%LANGUAGE%/movies/lo"
+  END
 
-	ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
-		"BEREGOST" => "19659" //[Movie]Beregost
-		"BG4LOGO" => "20698"  //Black Isle Logo
-		"BGENTER" => "19660"  //[Movie]Entering Baldur's Gate
-		"BGSUNRIS" => "9999992" //[Movie]BG Sunrise
-		"BGSUNSET" => "9999993" //[Movie]BG Sunset
-		"BHAAL" => "19661"    //[Movie]The Temple of Bhaal
-		"BILOGO" => "9999994" //[Movie]BioWare Logo
-		"BIOWBOTH" => "9999995" //[Movie]BioWare and IE Logos
-		"BLACKPIT" => "31833" //[Movie]The Black Pits Introduction
-		"BWDRAGON" => "9999996" //[Movie]BioWare Dragon Logo
-		"CAMP" => "19662"     //[Movie]Bandit Camp
-		"CNDLKEEP" => "19663" //[Movie]Inside Candlekeep
-		"CREDITS" => "9999997" //[Movie]Credits
-		"DAYNITE" => "25275"  //Sunset movie
-		"DEATHAND" => "25282" //Death
-		"DUNGEON" => "19664"  //[Movie]The Dungeon
-		"DURLAG" => "24075"   //[Movie]Entering Durlag's Tower
-		"ELDRCITY" => "19665" //[Movie]The Undercity
-		"ENDCRDIT" => "9999998" //[Movie]End Credits
-		"ENDMOVIE" => "19666" //[Movie]Conclusion
-		"FRARMINN" => "19667" //[Movie]The Friendly Arm Inn
-		"GNOLL" => "19668"    //[Movie]The Gnoll Stronghold
-		"INFELOGO" => "20700" //Infinity Engine Logo
-		"INTRO" => "19669"    //[Movie]Introduction
-		"IRONTHRN" => "19670" //[Movie]The Iron Throne
-		"LOGO" => "9999999"   //[Movie]Beamdog Logo
-		"MINEFLOD" => "19671" //[Movie]The Flooded Mine
-		"NASHKELL" => "19672" //[Movie]Entering Nashkel
-		"NITEDAY" => "25274"  //Sunrise movie
-		"PALACE" => "19673"   //[Movie]The Ducal Palace
-		"REST" => "25292"     //Resting Outside
-		"RESTDUNG" => "25293" //Resting in Dungeon
-		"RESTINN" => "25294"  //Resting at Inn
-		"SEWER" => "19674"    //[Movie]The Sewers
-		"SODCIN01" => "9999991" //[Movie]Siege of Dragonspear Introduction
-		"SODCIN02" => "67454" //[Movie]Boareskyr Bridge
-		"SODCIN03" => "67455" //[Movie]Murder
-		"SODCIN05" => "9999990" //[Movie]Ambush
-		"TAVERN" => "19675"   //[Movie]The Tavern
-		"TSRLOGO" => "20697"  //TSR Logo
-		"WOTC" => "25295"     //WOTC Logo
-		"WRECK" => "24076"    //[Movie]Across the Trackless Sea
-		"WYVERN" => "19676"   //[Movie]The Wyvern
-	END
+  ACTION_IF GAME_IS ~eet~ BEGIN
+    ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+      "BEREGOST" => "219659"  //[Movie]Beregost
+      "BG4LOGO"  => "220698"  //Black Isle Logo
+      "BGENTER"  => "219660"  //[Movie]Entering Baldur's Gate
+      "BGSUNRIS" => "9999992" //[Movie]BG Sunrise
+      "BGSUNSET" => "9999993" //[Movie]BG Sunset
+      "BHAAL"    => "219661"  //[Movie]The Temple of Bhaal
+      "BILOGO"   => "9999994" //[Movie]BioWare Logo
+      "BIOWBOTH" => "9999995" //[Movie]BioWare and IE Logos
+      "BLACKPIT" => "231833"  //[Movie]The Black Pits Introduction
+      "BWDRAGON" => "9999996" //[Movie]BioWare Dragon Logo
+      "CAMP"     => "219662"  //[Movie]Bandit Camp
+      "CNDLKEEP" => "219663"  //[Movie]Inside Candlekeep
+      "CREDITS"  => "9999997" //[Movie]Credits
+      "DAYNITE"  => "225275"  //Sunset movie
+      "DEATHAND" => "225282"  //Death
+      "DUNGEON"  => "219664"  //[Movie]The Dungeon
+      "DURLAG"   => "224075"  //[Movie]Entering Durlag's Tower
+      "ELDRCITY" => "219665"  //[Movie]The Undercity
+      "ENDCRDIT" => "9999998" //[Movie]End Credits
+      "ENDMOVIE" => "219666"  //[Movie]Conclusion
+      "FRARMINN" => "219667"  //[Movie]The Friendly Arm Inn
+      "GNOLL"    => "219668"  //[Movie]The Gnoll Stronghold
+      "INFELOGO" => "220700"  //Infinity Engine Logo
+      "INTRO"    => "219669"  //[Movie]Introduction
+      "IRONTHRN" => "219670"  //[Movie]The Iron Throne
+      "LOGO"     => "9999999" //[Movie]Beamdog Logo
+      "MINEFLOD" => "219671"  //[Movie]The Flooded Mine
+      "NASHKELL" => "219672"  //[Movie]Entering Nashkel
+      "NITEDAY"  => "225274"  //Sunrise movie
+      "PALACE"   => "219673"  //[Movie]The Ducal Palace
+      "REST"     => "225292"  //Resting Outside
+      "RESTDUNG" => "225293"  //Resting in Dungeon
+      "RESTINN"  => "225294"  //Resting at Inn
+      "SEWER"    => "219674"  //[Movie]The Sewers
+      "SODCIN01" => "9999991" //[Movie]Siege of Dragonspear Introduction
+      "SODCIN02" => "267454"  //[Movie]Boareskyr Bridge
+      "SODCIN03" => "267455"  //[Movie]Murder
+      "SODCIN05" => "9999990" //[Movie]Ambush
+      "TAVERN"   => "219675"  //[Movie]The Tavern
+      "TSRLOGO"  => "220697"  //TSR Logo
+      "WOTC"     => "225295"  //WOTC Logo
+      "WRECK"    => "224076"  //[Movie]Across the Trackless Sea
+      "WYVERN"   => "219676"  //[Movie]The Wyvern
+    END
+  END ELSE BEGIN
+    ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+      "BEREGOST" => "19659"   //[Movie]Beregost
+      "BG4LOGO"  => "20698"   //Black Isle Logo
+      "BGENTER"  => "19660"   //[Movie]Entering Baldur's Gate
+      "BGSUNRIS" => "9999992" //[Movie]BG Sunrise
+      "BGSUNSET" => "9999993" //[Movie]BG Sunset
+      "BHAAL"    => "19661"   //[Movie]The Temple of Bhaal
+      "BILOGO"   => "9999994" //[Movie]BioWare Logo
+      "BIOWBOTH" => "9999995" //[Movie]BioWare and IE Logos
+      "BLACKPIT" => "31833"   //[Movie]The Black Pits Introduction
+      "BWDRAGON" => "9999996" //[Movie]BioWare Dragon Logo
+      "CAMP"     => "19662"   //[Movie]Bandit Camp
+      "CNDLKEEP" => "19663"   //[Movie]Inside Candlekeep
+      "CREDITS"  => "9999997" //[Movie]Credits
+      "DAYNITE"  => "25275"   //Sunset movie
+      "DEATHAND" => "25282"   //Death
+      "DUNGEON"  => "19664"   //[Movie]The Dungeon
+      "DURLAG"   => "24075"   //[Movie]Entering Durlag's Tower
+      "ELDRCITY" => "19665"   //[Movie]The Undercity
+      "ENDCRDIT" => "9999998" //[Movie]End Credits
+      "ENDMOVIE" => "19666"   //[Movie]Conclusion
+      "FRARMINN" => "19667"   //[Movie]The Friendly Arm Inn
+      "GNOLL"    => "19668"   //[Movie]The Gnoll Stronghold
+      "INFELOGO" => "20700"   //Infinity Engine Logo
+      "INTRO"    => "19669"   //[Movie]Introduction
+      "IRONTHRN" => "19670"   //[Movie]The Iron Throne
+      "LOGO"     => "9999999" //[Movie]Beamdog Logo
+      "MINEFLOD" => "19671"   //[Movie]The Flooded Mine
+      "NASHKELL" => "19672"   //[Movie]Entering Nashkel
+      "NITEDAY"  => "25274"   //Sunrise movie
+      "PALACE"   => "19673"   //[Movie]The Ducal Palace
+      "REST"     => "25292"   //Resting Outside
+      "RESTDUNG" => "25293"   //Resting in Dungeon
+      "RESTINN"  => "25294"   //Resting at Inn
+      "SEWER"    => "19674"   //[Movie]The Sewers
+      "SODCIN01" => "9999991" //[Movie]Siege of Dragonspear Introduction
+      "SODCIN02" => "67454"   //[Movie]Boareskyr Bridge
+      "SODCIN03" => "67455"   //[Movie]Murder
+      "SODCIN05" => "9999990" //[Movie]Ambush
+      "TAVERN"   => "19675"   //[Movie]The Tavern
+      "TSRLOGO"  => "20697"   //TSR Logo
+      "WOTC"     => "25295"   //WOTC Logo
+      "WRECK"    => "24076"   //[Movie]Across the Trackless Sea
+      "WYVERN"   => "19676"   //[Movie]The Wyvern
+    END
+  END
 
-	//Function for patching movidesc.2da by inserting any missing rows and optionally update existing strrefs
-	//vars: f_Replace - boolean; when true, existing entries in movidesc.2da will have their
-	//                  strrefs updated if they do not match the strrefs in movidesc_map
-	DEFINE_ACTION_FUNCTION patch_movidesc INT_VAR f_Replace = 1 BEGIN
-		COPY_EXISTING movidesc.2da override
-			READ_2DA_ENTRIES_NOW movidesc 2
-			FOR (i = 1; i < movidesc; ++i) BEGIN
-				READ_2DA_ENTRY_FORMER movidesc i 0 movie
-				READ_2DA_ENTRY_FORMER movidesc i 1 strref
-				TO_UPPER movie
-				SET $Amovidesc("%movie%") = strref
-			END
-			PHP_EACH movidesc_map AS m => s BEGIN
-				TO_UPPER m
-				PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-					PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
-						PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-							PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND !VARIABLE_IS_SET $Amovidesc("%m%") BEGIN
-								INSERT_2DA_ROW movidesc 2 "%m% %s%"
-								SET $Amovidesc("%m%") = s
-							END
-							PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND f_Replace AND $Amovidesc("%m%") != s BEGIN
-								REPLACE_TEXTUALLY "^%m%[ %TAB%]+[0-9]+" "%m% %s%"
-								SET $Amovidesc("%m%") = s
-							END
-						END
-					END
-				END
-			END
-			REPLACE ~9999999~ @0 //Beamdog Logo
-			REPLACE ~9999998~ @7 //[Movie]End Credits
-			REPLACE ~9999997~ @8 //[Movie]Credits
-			REPLACE ~9999996~ @9 //[Movie]BioWare Dragon Logo
-			REPLACE ~9999995~ @10//[Movie]BioWare and IE Logos
-			REPLACE ~9999994~ @11//[Movie]BioWare Logo
-			REPLACE ~9999993~ @12//[Movie]BG Sunset
-			REPLACE ~9999992~ @13//[Movie]BG Sunrise
-			REPLACE ~9999991~ @14//[Movie]Siege of Dragonspear Introduction
-			REPLACE ~9999990~ @15//[Movie]Ambush
-			PRETTY_PRINT_2DA
-		BUT_ONLY
-	END
+  //Function for patching movidesc.2da by inserting any missing rows and optionally update existing strrefs
+  //vars: f_Replace - boolean; when true, existing entries in movidesc.2da will have their
+  //                  strrefs updated if they do not match the strrefs in movidesc_map
+  DEFINE_ACTION_FUNCTION patch_movidesc INT_VAR f_Replace = 1 BEGIN
+    COPY_EXISTING movidesc.2da override
+      READ_2DA_ENTRIES_NOW movidesc 2
+      FOR (i = 1; i < movidesc; ++i) BEGIN
+        READ_2DA_ENTRY_FORMER movidesc i 0 movie
+        READ_2DA_ENTRY_FORMER movidesc i 1 strref
+        TO_UPPER movie
+        SET $Amovidesc("%movie%") = strref
+      END
+      PHP_EACH movidesc_map AS m => s BEGIN
+        TO_UPPER m
+        PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+          PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
+            PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+              PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND !VARIABLE_IS_SET $Amovidesc("%m%") BEGIN
+                INSERT_2DA_ROW movidesc 2 "%m% %s%"
+                SET $Amovidesc("%m%") = s
+              END
+              PATCH_IF ("%BASH_FOR_RES%" STRING_EQUAL "%m%") AND f_Replace AND $Amovidesc("%m%") != s BEGIN
+                REPLACE_TEXTUALLY "^%m%[ %TAB%]+[0-9]+" "%m% %s%"
+                SET $Amovidesc("%m%") = s
+              END
+            END
+          END
+        END
+      END
+      REPLACE ~9999999~ @0 //Beamdog Logo
+      REPLACE ~9999998~ @7 //[Movie]End Credits
+      REPLACE ~9999997~ @8 //[Movie]Credits
+      REPLACE ~9999996~ @9 //[Movie]BioWare Dragon Logo
+      REPLACE ~9999995~ @10//[Movie]BioWare and IE Logos
+      REPLACE ~9999994~ @11//[Movie]BioWare Logo
+      REPLACE ~9999993~ @12//[Movie]BG Sunset
+      REPLACE ~9999992~ @13//[Movie]BG Sunrise
+      REPLACE ~9999991~ @14//[Movie]Siege of Dragonspear Introduction
+      REPLACE ~9999990~ @15//[Movie]Ambush
+      PRETTY_PRINT_2DA
+    BUT_ONLY
+  END
 
-	//Function for patching Baldur.lua/Baldur.ini by inserting and activating missing MOVIE entries
-	DEFINE_ACTION_FUNCTION patch_Baldur_config BEGIN
-		ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.lua~) BEGIN
-			COPY ~%USER_DIRECTORY%/Baldur.lua~ ~%USER_DIRECTORY%/Baldur.lua~
-				PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-					PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
-						PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
-							PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-								REPLACE_TEXTUALLY ~'%BASH_FOR_RES%','0'~ ~'%BASH_FOR_RES%','1'~
-								COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
-								PATCH_IF (num_matches = 0) BEGIN
-									TEXT_SPRINT stuff_to_append ~SetPrivateProfileString('MOVIES','%BASH_FOR_RES%','1')
+  //Function for patching Baldur.lua/Baldur.ini by inserting and activating missing MOVIE entries
+  DEFINE_ACTION_FUNCTION patch_Baldur_config BEGIN
+    ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.lua~) BEGIN
+      COPY ~%USER_DIRECTORY%/Baldur.lua~ ~%USER_DIRECTORY%/Baldur.lua~
+        PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
+            PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
+              PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+                REPLACE_TEXTUALLY ~'%BASH_FOR_RES%','0'~ ~'%BASH_FOR_RES%','1'~
+                COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
+                PATCH_IF (num_matches = 0) BEGIN
+                  TEXT_SPRINT stuff_to_append ~SetPrivateProfileString('MOVIES','%BASH_FOR_RES%','1')
 ~
-									INSERT_BYTES SOURCE_SIZE STRING_LENGTH ~%stuff_to_append%~
-									WRITE_ASCIIE SOURCE_SIZE ~%stuff_to_append%~
-								END
-							END
-						END
-					END
-				END
-			BUT_ONLY
-		END ELSE ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.ini~) BEGIN
-			COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
-				PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-					PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
-						PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
-							PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-								REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-								COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
-								PATCH_IF (num_matches = 0) BEGIN
-									REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
+                  INSERT_BYTES SOURCE_SIZE STRING_LENGTH ~%stuff_to_append%~
+                  WRITE_ASCIIE SOURCE_SIZE ~%stuff_to_append%~
+                END
+              END
+            END
+          END
+        END
+      BUT_ONLY
+    END ELSE ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.ini~) BEGIN
+      COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
+        PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
+            PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
+              PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+                REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
+                COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
+                PATCH_IF (num_matches = 0) BEGIN
+                  REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
 	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-								END
-							END
-						END
-					END
-				END
-			BUT_ONLY
-		END ELSE BEGIN
+                END
+              END
+            END
+          END
+        END
+      BUT_ONLY
+    END ELSE BEGIN
 		<<<<<<<< inlined/Baldur.ini
 		CREATE TABLE options (
 			section string,
@@ -154,54 +202,56 @@ ALWAYS
 		INSERT INTO options ROWS (
 		);
 		>>>>>>>>
-			COPY ~inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
-				PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-					PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
-						PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
-							PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-								REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-								COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
-								PATCH_IF (num_matches = 0) BEGIN
-									REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
+      COPY ~inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
+        PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
+            PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
+              PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+                REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
+                COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
+                PATCH_IF (num_matches = 0) BEGIN
+                  REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
 	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-								END
-							END
-						END
-					END
-				END
-			BUT_ONLY
-		END
-	END
+                END
+              END
+            END
+          END
+        END
+      BUT_ONLY
+    END
+  END
 
 END
 
 LANGUAGE ~English~
-	~en_US~
-	~BGEEClassicMovies/lang/en_US/setup.tra~
+  ~en_US~
+  ~BGEEClassicMovies/lang/en_US/setup.tra~
 LANGUAGE ~Polski (Polish)~
-	~pl_PL~
-	~BGEEClassicMovies/lang/pl_PL/setup.tra~
+  ~pl_PL~
+  ~BGEEClassicMovies/lang/pl_PL/setup.tra~
 LANGUAGE ~Espanol (Spanish)~
-	~es_ES~
-	~BGEEClassicMovies/lang/es_ES/setup.tra~
+  ~es_ES~
+  ~BGEEClassicMovies/lang/es_ES/setup.tra~
 LANGUAGE ~Deutsch (German)~
-	~de_DE~
-	~BGEEClassicMovies/lang/de_DE/setup.tra~
+  ~de_DE~
+  ~BGEEClassicMovies/lang/de_DE/setup.tra~
 
 BEGIN @1//Replace all movies
 SUBCOMPONENT @2//Restore BG1 movies to BG:EE
 REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
 FORBID_COMPONENT ~BGEE_PL/setup-BGEE_PL.tp2~ 1 ~Filmiki juz zainstalowane wraz z modem BGEE_PL~
+LABEL ~PS_BGEEClassicMovies_ReplaceMovies~
+
 
 ACTION_PHP_EACH dirs AS src => target BEGIN
-	MKDIR ~%target%~
-	ACTION_BASH_FOR "%src_1%" ".*\.wbm$" BEGIN
-		ACTION_IF FILE_EXISTS "%src%/%BASH_FOR_FILE%" BEGIN
-			COPY_LARGE "%src%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
-		END ELSE BEGIN
-			COPY_LARGE "%src_1%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
-		END
-	END
+  MKDIR ~%target%~
+  ACTION_BASH_FOR "%src_1%" ".*\.wbm$" BEGIN
+    ACTION_IF FILE_EXISTS "%src%/%BASH_FOR_FILE%" BEGIN
+      COPY_LARGE "%src%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+    END ELSE BEGIN
+      COPY_LARGE "%src_1%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+    END
+  END
 END
 
 LAF patch_Baldur_config END
@@ -212,18 +262,20 @@ BEGIN @4//Add missing movies
 SUBCOMPONENT @2//Restore BG1 movies to BG:EE
 REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
 REQUIRE_PREDICATE (("%LANGUAGE%" STRING_EQUAL_CASE ~pl_PL~)=0) @5//This component is not compatible with the chosen language
+LABEL ~PS_BGEEClassicMovies_AddMissingMovies~
+
 
 ACTION_PHP_EACH dirs AS src => target BEGIN
-	MKDIR ~%target%~
-	ACTION_BASH_FOR "%src_1%" ".*\.wbm$" BEGIN
-		ACTION_IF !FILE_EXISTS "%target%/%BASH_FOR_FILE%" AND !FILE_EXISTS "movies/%BASH_FOR_FILE%" BEGIN
-			ACTION_IF FILE_EXISTS "%src%/%BASH_FOR_FILE%" BEGIN
-				COPY_LARGE "%src%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
-			END ELSE BEGIN
-				COPY_LARGE "%src_1%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
-			END
-		END
-	END
+  MKDIR ~%target%~
+  ACTION_BASH_FOR "%src_1%" ".*\.wbm$" BEGIN
+    ACTION_IF !FILE_EXISTS "%target%/%BASH_FOR_FILE%" AND !FILE_EXISTS "movies/%BASH_FOR_FILE%" BEGIN
+      ACTION_IF FILE_EXISTS "%src%/%BASH_FOR_FILE%" BEGIN
+        COPY_LARGE "%src%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+      END ELSE BEGIN
+        COPY_LARGE "%src_1%/%BASH_FOR_FILE%" "%target%/%BASH_FOR_FILE%"
+      END
+    END
+  END
 END
 
 LAF patch_Baldur_config END
@@ -232,39 +284,41 @@ INCLUDE "BGEEClassicMovies/lib/fixes.tpa"
 
 BEGIN @6//Show all movies in options without need to unlock them in game
 REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
+LABEL ~PS_BGEEClassicMovies_AddMoviesToInGameMenu~
+
 
 ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.lua~) BEGIN
-	COPY ~%USER_DIRECTORY%/Baldur.lua~ ~%USER_DIRECTORY%/Baldur.lua~
-		PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-			PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
-				PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-					REPLACE_TEXTUALLY ~'%BASH_FOR_RES%','0'~ ~'%BASH_FOR_RES%','1'~
-					COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
-					PATCH_IF (num_matches = 0) BEGIN
-						TEXT_SPRINT stuff_to_append ~SetPrivateProfileString('MOVIES','%BASH_FOR_RES%','1')
+  COPY ~%USER_DIRECTORY%/Baldur.lua~ ~%USER_DIRECTORY%/Baldur.lua~
+    PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+      PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
+        PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+          REPLACE_TEXTUALLY ~'%BASH_FOR_RES%','0'~ ~'%BASH_FOR_RES%','1'~
+          COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
+          PATCH_IF (num_matches = 0) BEGIN
+            TEXT_SPRINT stuff_to_append ~SetPrivateProfileString('MOVIES','%BASH_FOR_RES%','1')
 ~
-						INSERT_BYTES SOURCE_SIZE STRING_LENGTH ~%stuff_to_append%~
-						WRITE_ASCIIE SOURCE_SIZE ~%stuff_to_append%~
-					END
-				END
-			END
-		END
-	BUT_ONLY
+            INSERT_BYTES SOURCE_SIZE STRING_LENGTH ~%stuff_to_append%~
+            WRITE_ASCIIE SOURCE_SIZE ~%stuff_to_append%~
+          END
+        END
+      END
+    END
+  BUT_ONLY
 END ELSE ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.ini~) BEGIN
-	COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
-		PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-			PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
-				PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-					REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-					COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
-					PATCH_IF (num_matches = 0) BEGIN
-						REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
+  COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
+    PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+      PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
+        PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+          REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
+          COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
+          PATCH_IF (num_matches = 0) BEGIN
+            REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
 	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-					END
-				END
-			END
-		END
-	BUT_ONLY
+          END
+        END
+      END
+    END
+  BUT_ONLY
 END ELSE BEGIN
 <<<<<<<< inlined/Baldur.ini
 CREATE TABLE options (
@@ -275,24 +329,26 @@ CREATE TABLE options (
 INSERT INTO options ROWS (
 );
 >>>>>>>>
-	COPY ~inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
-		PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-			PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
-				PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
-					REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-					COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
-					PATCH_IF (num_matches = 0) BEGIN
-						REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
+  COPY ~inlined/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
+    PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
+      PATCH_BASH_FOR "%target%/" ".*\.wbm$" BEGIN //For every movie actually in the game
+        PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
+          REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
+          COUNT_REGEXP_INSTANCES ~'%BASH_FOR_RES%'~ num_matches
+          PATCH_IF (num_matches = 0) BEGIN
+            REPLACE_TEXTUALLY ~INSERT INTO options ROWS (~ ~INSERT INTO options ROWS (
 	'MOVIES',	'%BASH_FOR_RES%',	'1',~
-					END
-				END
-			END
-		END
-	BUT_ONLY
+          END
+        END
+      END
+    END
+  BUT_ONLY
 END
 
 BEGIN @16 //Restore BG1 Chapter and Dream Screens
 REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
+LABEL ~PS_BGEEClassicMovies_RestoreChapterDreamScreens~
+
 
 DEFINE_ACTION_FUNCTION ps_install_mos STR_VAR path = "" filespec = "" newname = "" BEGIN
   COPY ~%filespec%~ ~override%newname%~
