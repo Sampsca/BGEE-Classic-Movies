@@ -2,7 +2,7 @@ BACKUP "BGEEClassicMovies/backup"
 AUTHOR ~Sam.~ // <http://www.shsforums.net/topic/55573-bg-ee-classic-movies/>
 VERSION ~v2.3.0~
 README ~BGEEClassicMovies/lang/%LANGUAGE%/ReadMe-BGEEClassicMovies.html~ ~BGEEClassicMovies/ReadMe-BGEEClassicMovies.html~
-MODDER
+//MODDER
 
 //Developed for Baldur's Gate Enhanced Edition v1.3+
 //Coded by Wisp, K4thos, and Sam.
