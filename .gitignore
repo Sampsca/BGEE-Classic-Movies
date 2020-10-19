@@ -1,28 +1,25 @@
-# Windows thumbnail cache files
-Thumbs.db
-ehthumbs.db
-ehthumbs_vista.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
 $RECYCLE.BIN/
+__macosx
+backup/
+temp/
+tmp/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+.*
+!/.gitattributes
+!/.gitconfig
+!/.github
+!/.gitignore
+!/.gitmodules
+!/.bgforge.yml
 
-# Windows shortcuts
+*.bak
+*.bat
+*.iemod
 *.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# Specific Files
-*.ahk
 *.rar
+*.tar*
+*.tmp
 *.zip
+
+[Tt]humbs.db
+[Dd]esktop.ini
