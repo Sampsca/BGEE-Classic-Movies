@@ -30,7 +30,7 @@
 *.are binary
 *.baf text
 *.bam binary
-*.bcs text eol=lf
+*.b[c]s text eol=lf
 *.cre binary
 *.d text
 *.dlg binary
