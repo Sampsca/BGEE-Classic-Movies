@@ -1,0 +1,95 @@
+* text=auto
+
+# use export-ignore to skip files when downloading
+**/.* export-ignore
+*.gitignore text
+*.gitattributes text
+
+# Common
+*.7z binary
+*.ahk text eol=crlf
+*.bat text eol=crlf
+*.command text eol=lf
+*.csv text eol=crlf
+*.dll binary
+*.exe binary
+*.gif binary
+*.htm[l] text
+*.ico binary
+*.jpg binary
+*.ps1 text eol=crlf
+*.sh text eol=lf
+*.txt text eol=crlf
+*.webm binary
+*.y[a]ml text
+
+# WeiDU File Formats
+*.baf text
+*.d text
+*.tp2 text
+*.tpa text
+*.tph text
+*.tpp text
+*.tra text
+
+# Infinity Engine File Formats
+*.2da text
+*.acm binary
+*.are binary
+*.bam binary
+*.b[c]s text eol=lf
+*.bif binary
+*.bmp binary
+*.cbf binary
+*.chr binary
+*.chu binary
+*.cre binary
+*.dlg binary
+*.eff binary
+*.fnt binary
+*.gam binary
+*.glsl text
+*.gui binary
+*.ids text
+*.ini text eol=crlf
+*.itm binary
+*.key binary
+*.lua text
+*.maze binary
+*.menu text
+*.mos binary
+*.mus text
+*.mve binary
+*.plt binary
+*.png binary
+*.pro binary
+*.pvrz binary
+*.sav binary
+*.sql binary
+*.spl binary
+*.src binary
+*.sto binary
+*.tis binary
+*.tlk binary
+*.toh binary
+*.tot binary
+*.ttf binary
+*.var binary
+*.vef binary
+*.vvc binary
+*.wav binary
+*.wbm binary
+*.wed binary
+*.wfx binary
+*.wmp binary
+
+# Infinity Engine Modding Tool File Formats
+*.iap binary
+*.kfu binary
+*.mbc binary
+*.moz binary
+*.pvr binary
+*.tbc binary
+*.tbg binary
+*.tbgn binary
+*.tiz binary
