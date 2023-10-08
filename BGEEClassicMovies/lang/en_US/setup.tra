@@ -1,4 +1,4 @@
-@0    = ~Beamdog Logo~
+@0    = ~[Movie]Beamdog Logo~
 @1    = ~Replace all movies~
 @2    = ~Restore BG1 movies to BG:EE~
 @3    = ~This mod is only available for BG:EE~
@@ -15,3 +15,10 @@
 @14   = ~[Movie]Siege of Dragonspear Introduction~
 @15   = ~[Movie]Ambush~
 @16   = ~Restore BG1 Chapter and Dream Screens~
+@17   = ~[Movie]Classic Logos~
+@18   = ~[Movie]Classic and Beamdog Logos~
+@19   = ~Modify startup movies~
+@20   = ~Disable startup logo and intro movies~
+@21   = ~Disable startup logo movie~
+@22   = ~Replace logo movie with classic BG1 logos~
+@23   = ~Play classic BG1 logos before Beamdog's logo movie~

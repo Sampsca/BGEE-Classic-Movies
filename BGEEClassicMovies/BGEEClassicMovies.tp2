@@ -17,6 +17,15 @@ ALWAYS
     "BGEEClassicMovies/lang/%LANGUAGE%/movies/lo" , "BGEEClassicMovies/lang/en_US/movies/lo" => "lang/%LANGUAGE%/movies/lo"
   END
 
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY logodirs BEGIN
+    "movies" => "BGEEClassicMovies/logos/$type$"
+    "movies/480" => "BGEEClassicMovies/logos/$type$/480"
+    "movies/lo" => "BGEEClassicMovies/logos/$type$/lo"
+    "lang/%LANGUAGE%/movies" => "BGEEClassicMovies/logos/$type$"
+    "lang/%LANGUAGE%/movies/480" => "BGEEClassicMovies/logos/$type$/480"
+    "lang/%LANGUAGE%/movies/lo" => "BGEEClassicMovies/logos/$type$/lo"
+  END
+
   ACTION_IF GAME_IS ~eet~ BEGIN
     ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
       "BEREGOST" => "219659"  //[Movie]Beregost
@@ -140,7 +149,7 @@ ALWAYS
           END
         END
       END
-      REPLACE ~9999999~ @0 //Beamdog Logo
+      REPLACE ~9999999~ @0 //[Movie]Beamdog Logo
       REPLACE ~9999998~ @7 //[Movie]End Credits
       REPLACE ~9999997~ @8 //[Movie]Credits
       REPLACE ~9999996~ @9 //[Movie]BioWare Dragon Logo
@@ -150,6 +159,8 @@ ALWAYS
       REPLACE ~9999992~ @13//[Movie]BG Sunrise
       REPLACE ~9999991~ @14//[Movie]Siege of Dragonspear Introduction
       REPLACE ~9999990~ @15//[Movie]Ambush
+      REPLACE ~9999989~ @17//[Movie]Classic Logos
+      REPLACE ~9999988~ @18//[Movie]Classic and Beamdog Logos
       PRETTY_PRINT_2DA
     BUT_ONLY
   END
@@ -159,7 +170,7 @@ ALWAYS
     ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.lua~) BEGIN
       COPY ~%USER_DIRECTORY%/Baldur.lua~ ~%USER_DIRECTORY%/Baldur.lua~
         PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
+          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO LOGO_ BEGIN
             PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
               PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
                 REPLACE_TEXTUALLY ~'%BASH_FOR_RES%','0'~ ~'%BASH_FOR_RES%','1'~
@@ -178,7 +189,7 @@ ALWAYS
     END ELSE ACTION_IF (FILE_EXISTS ~%USER_DIRECTORY%/Baldur.ini~) BEGIN
       COPY ~%USER_DIRECTORY%/Baldur.ini~ ~%USER_DIRECTORY%/Baldur.ini~
         PHP_EACH dirs AS src => target BEGIN //For each directory in which movies can be found
-          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO BEGIN
+          PATCH_FOR_EACH movie IN WOTC TSRLOGO INFELOGO CREDITS BWDRAGON BIOWBOTH BILOGO BG4LOGO LOGO_ BEGIN
             PATCH_BASH_FOR "%target%/" "%movie%\.wbm$" BEGIN //For each movie in the above list
               PATCH_IF (BASH_FOR_SIZE > 0) BEGIN //Is a real file
                 REPLACE_TEXTUALLY ~	'MOVIES',	'%BASH_FOR_RES%',	'0',~ ~	'MOVIES',	'%BASH_FOR_RES%',	'1',~
@@ -546,4 +557,100 @@ ACTION_IF NOT GAME_INCLUDES ~SoD~ BEGIN
   COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
 END ELSE BEGIN
   PRINT ~SoD detected.~
+END
+
+BEGIN @20 //Disable startup logo and intro movies
+SUBCOMPONENT @19 //Modify startup movies
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
+LABEL ~PS_BGEEClassicMovies_DisableLogoAndIntroMovies~
+
+ACTION_PHP_EACH logodirs AS target => src BEGIN
+  ACTION_IF FILE_EXISTS ~%target%/logo.wbm~ BEGIN
+    MOVE ~%target%/logo.wbm~ ~%target%/logo_.wbm~
+    //OUTER_SPRINT type ~blank~
+    //OUTER_INNER_PATCH_SAVE src ~%src%~ BEGIN
+    //  EVALUATE_BUFFER_SPECIAL ~$~
+    //END
+    //COPY_LARGE ~%src%/blank.wbm~ ~%target%/logo.wbm~
+    LAF patch_Baldur_config END
+    ACTION_CLEAR_ARRAY movidesc_map
+    ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+      "LOGO_"    => "9999999" //[Movie]Beamdog Logo
+    END
+    LAF patch_movidesc END
+  END
+END
+
+BEGIN @21 //Disable startup logo movie
+SUBCOMPONENT @19 //Modify startup movies
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
+LABEL ~PS_BGEEClassicMovies_DisableLogoMovie~
+
+ACTION_PHP_EACH logodirs AS target => src BEGIN
+  ACTION_IF FILE_EXISTS ~%target%/logo.wbm~ BEGIN
+    COPY_LARGE ~%target%/logo.wbm~ ~%target%/logo_.wbm~
+    OUTER_SPRINT type ~blank~
+    OUTER_INNER_PATCH_SAVE src ~%src%~ BEGIN
+      EVALUATE_BUFFER_SPECIAL ~$~
+    END
+    ACTION_IF FILE_EXISTS ~%src%/blank.wbm~ BEGIN
+      COPY_LARGE ~%src%/blank.wbm~ ~%target%/logo.wbm~
+    END
+    LAF patch_Baldur_config END
+    ACTION_CLEAR_ARRAY movidesc_map
+    ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+      "LOGO_"    => "9999999" //[Movie]Beamdog Logo
+    END
+    LAF patch_movidesc END
+  END
+END
+
+BEGIN @22 //Replace logo movie with classic BG1 logos
+SUBCOMPONENT @19 //Modify startup movies
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
+LABEL ~PS_BGEEClassicMovies_ReplaceLogo~
+
+ACTION_PHP_EACH logodirs AS target => src BEGIN
+  ACTION_IF FILE_EXISTS ~%target%/logo.wbm~ BEGIN
+    COPY_LARGE ~%target%/logo.wbm~ ~%target%/logo_.wbm~
+    OUTER_SPRINT type ~replace~
+    OUTER_INNER_PATCH_SAVE src ~%src%~ BEGIN
+      EVALUATE_BUFFER_SPECIAL ~$~
+    END
+    ACTION_IF FILE_EXISTS ~%src%/logo.wbm~ BEGIN
+      COPY_LARGE ~%src%/logo.wbm~ ~%target%/logo.wbm~
+    END
+    LAF patch_Baldur_config END
+    ACTION_CLEAR_ARRAY movidesc_map
+    ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+      "LOGO_"    => "9999999" //[Movie]Beamdog Logo
+      "LOGO"     => "9999989" //[Movie]Classic Logos
+    END
+    LAF patch_movidesc END
+  END
+END
+
+BEGIN @23 //Play classic BG1 logos before Beamdog's logo movie
+SUBCOMPONENT @19 //Modify startup movies
+REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
+LABEL ~PS_BGEEClassicMovies_PrependClassicLogos~
+
+ACTION_PHP_EACH logodirs AS target => src BEGIN
+  ACTION_IF FILE_EXISTS ~%target%/logo.wbm~ BEGIN
+    COPY_LARGE ~%target%/logo.wbm~ ~%target%/logo_.wbm~
+    OUTER_SPRINT type ~prepend~
+    OUTER_INNER_PATCH_SAVE src ~%src%~ BEGIN
+      EVALUATE_BUFFER_SPECIAL ~$~
+    END
+    ACTION_IF FILE_EXISTS ~%src%/logo.wbm~ BEGIN
+      COPY_LARGE ~%src%/logo.wbm~ ~%target%/logo.wbm~
+    END
+    LAF patch_Baldur_config END
+    ACTION_CLEAR_ARRAY movidesc_map
+    ACTION_DEFINE_ASSOCIATIVE_ARRAY movidesc_map BEGIN
+      "LOGO_"    => "9999999" //[Movie]Beamdog Logo
+      "LOGO"     => "9999988" //[Movie]Classic and Beamdog Logos
+    END
+    LAF patch_movidesc END
+  END
 END
