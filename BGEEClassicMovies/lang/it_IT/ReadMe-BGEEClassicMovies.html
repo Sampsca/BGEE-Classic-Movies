@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        cursor: default;
+        text-align: center;
+        color: #000;
+        background: #e3e3db url("data:image/jpeg;base64,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%3D%3D");
+      }
+      #wrap {
+        text-align: left;
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 88%;
+        font-family: Verdana, Tahoma, Arial, sans-serif;
+        font-size: 12px;
+        color: #333;
+      }
+      #header {
+        text-align: center;
+        background: #e5e5e5;
+        border: 1px solid #781808;
+        border-top: 5px solid #781808;
+        border-bottom: 5px solid #781808;
+        padding: 5px 0 13px 0;
+      }
+      #header .about {
+        margin: 7px 0 0 0;
+        padding: 0;
+        font-style: italic;
+        color: #555;
+      }
+      #header .menu {
+        font-weight: bold;
+        margin: 0;
+        color: #999;
+      }
+      #header .menu a:link,
+      #header .menu a:visited {
+        color: #333;
+      }
+      #maindiv {
+        margin: 0 auto;
+        margin-top: -20px;
+        width: 80%;
+      }
+      #maindiv .content {
+        counter-increment: kman;
+        counter-reset: h2;
+        background-color: #e8e8e6;
+        padding: 0 0 25px 0;
+        margin: 50px auto;
+        border-width: 1px 1px 4px 10px;
+        border-style: solid;
+        border-color: #781808;
+        position: relative;
+        display: block;
+      }
+      #maindiv .content::before {
+        content: counter(kman, lower-roman);
+        font-size: 100%;
+        font-weight: bold;
+        text-align: center;
+        color: #eee;
+        background-color: #781808;
+        width: 35px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: block;
+      }
+      h2 {
+        display: block;
+        font-family: Verdana, Tahoma, Arial, sans-serif;
+        text-align: left;
+        text-indent: 30px;
+        padding: 0px;
+        margin: 20px 0 0 0;
+        border-bottom: dotted 2px #d0d0d0;
+        border-top: dotted 2px #d0d0d0;
+        background: #deded9;
+        font-size: 160%;
+      }
+      h2::first-letter {
+        color: #781808;
+        background-color: transparent;
+      }
+      #maindiv p {
+        font-size: 100%;
+        font-style: normal;
+        line-height: 150%;
+        padding: 0px;
+        margin: 10px auto;
+        width: 90%;
+        display: block;
+      }
+      #maindiv address a:link {
+        font-weight: bold;
+        text-decoration: underline;
+        background-color: transparent;
+        color: #eaeaea;
+        padding-right: 5px;
+        padding-left: 6px;
+      }
+      #maindiv address a:visited {
+        background-color: transparent;
+        color: #eaeaea;
+      }
+      #maindiv address a:focus,
+      #maindiv address a:hover {
+        text-decoration: none;
+        color: #F1F1F1;
+        border: 0;
+      }
+      #maindiv address a:active {
+        color: #fff;
+        text-decoration: line-through;
+        border: none;
+      }
+      #maindiv address {
+        font-size: 95%;
+        font-style: normal;
+        font-weight: bold;
+        text-decoration: none;
+        color: #BBB;
+        background-color: #781808;
+        padding: 3px 0px 0px;
+        margin: 0px;
+        width: 100%;
+        position: absolute;
+        bottom: -1px;
+        left: 0px;
+        display: block;
+        text-align: right;
+      }
+      #maindiv .important {
+        font-size: 95%;
+        font-family: Verdana, Tahoma, Arial, sans-serif;
+        text-align: left;
+        background-color: #F1F1F1;
+        border-top: solid 1px #aaa;
+        border-bottom: solid 1px #aaa;
+        border-left: solid 6px #aaa;
+        border-right: solid 6px #aaa;
+        padding: 10px;
+        margin: 20px auto;
+        width: 80%;
+        line-height: 160%;
+      }
+      #maindiv .important::before {
+        display: none;
+      }
+      #maindiv .important p {
+        font-size: 100%;
+        text-indent: 0px;
+        margin: 5px 0 10px 0;
+      }
+      #maindiv ul {
+        margin: -10px 0 0 30px;
+        margin-left: 35px;
+      }
+      #maindiv ol {
+        margin: -10px 0 0 35px;
+        margin-left: 40px;
+      }
+      #maindiv .important ul {
+        margin: -10px 0 0 15px;
+      }
+      #maindiv .important ol {
+        margin: -10px 0 0 20px;
+      }
+      #maindiv ul li {
+        list-style-type: square;
+        line-height: 150%;
+      }
+      #maindiv ol li {
+        line-height: 150%;
+      }
+      .t1 {
+        font-weight: bold;
+        width: 26%;
+        text-align: right;
+        clear: right;
+        float: left;
+        line-height: 22px;
+      }
+      .t2 {
+        text-align: left;
+        width: 73%;
+        float: right;
+        line-height: 22px;
+      }
+      hr {
+        margin: 10px 0 10px 0;
+        padding: 0;
+        height: 1px;
+        border: 0;
+        color: #aaa;
+        background-color: #aaa;
+      }
+      hr.floatfix {
+        clear: both;
+        color: #e8e8e6;
+        background-color: #e8e8e6;
+      }
+      h1 {
+        font-size: 225%;
+        color: #444;
+        padding: 5px 0 5px 0;
+        margin: 0;
+        width: 100%;
+      }
+      h3,
+      h4,
+      h5 {
+        margin: 10px 40px 10px 40px;
+        padding: 0;
+      }
+      h3 {
+        font-size: 125%;
+        font-style: italic;
+      }
+      h4 {
+        font-size: 125%;
+      }
+      h5 {
+        font-size: 100%;
+      }
+      h6 {
+        width: 100%;
+        margin: 10px 0 15px 0;
+        background-color: #ECECEC;
+        text-align: left;
+        text-indent: 30px;
+        font-size: 100%;
+        font-style: italic;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        border-bottom: solid 1px #bbb;
+        border-top: solid 1px #bbb;
+      }
+      a:link {
+        color: #781808;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      a:visited {
+        color: #781808;
+      }
+      a:hover,
+      a:active {
+        color: #222;
+        border-bottom: 1px solid black;
+      }
+    </style>
+    <title>Spellhold Studios - BG:EE Classic Movies</title>
+    <link rel="icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAJkA////APz8/AD9/f0AJCSnABUVoQDw8PkA0tLtALe34gAPD58AgYHNAHh4yQAqKqoA8/P6ABsbpAAMDJ4AMzOtALS04QADA5oAycnpAPz8/gAYGKMAOTmwAM/P7ADV1e4A9vb7ANvb8QBOTrgAh4fPAFFRuQBXV7wAHh6lAGNjwQDMzOsAS0u3AKWl2wCQkNMAiorQAMPD5wCrq90AWlq9ABISoAC6uuMACQmdAMbG6ADY2O8A5+f1AGlpwwA2Nq8A4eHzAFRUuwBycscArq7fACEhpgAtLasAPDyxAGxsxAC+vuQA5OT0AEJCswCWltUAp6fbAMDA5gB1dcgAJyepAO3t+AD5+f0AU1O5AFlZvACvr98AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwEBAQgAAAAeJj4UDgwBAgMBAQEkAAAADy0GLg8FAQIDAQEBIhAfEgAAEAUAAA0CAwEBBjMHDTgMAAAVFgAhAgMBARgxCAcBCDcABBgAPAIDAQY6BAAOIiEIBQALKxYCAwENNgAQMABAEx8ACSQFOQMBJxwdBy8AAAsjNQARAQIDAQsHHCkdKiUEQgwACgECAwEoBAAAHgEBOyUAAAoBAgMZDgAAAAAgGg8AAAARAQIDGwAJAAAAAAAAAAAEGSwCPQUXFwkAAAAAAAAABBsaAkM0AQETFQAAAAAACQEBAQJEFAEBAUEKID8jMhIBAQECRQEBAQEBAQEBASYABgEBAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%3D">
+  </head>
+  <body>
+    <script type="module">
+		document.getElementById("latestVersion").innerText = document.getElementsByTagName("h6")[0].innerText
+	</script>
+    <div id="wrap">
+      <div id="header">
+        <a id="top"></a>
+        <h1>BG:EE Classic Movies</h1>
+        <strong>Un mod di Spellhold Studios per Baldur's Gate: Enhanced Edition</strong>
+        <hr>
+        <p class="about">
+          Autore: <a href="http://www.shsforums.net/user/10485-sam/">Sam.</a>
+        </p>
+        <p class="about">
+          <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Sito del mod</a> •
+          <a href="http://www.shsforums.net/topic/55573-bg-ee-classic-movies/">Forum del mod</a> •
+          <strong><span id="latestVersion"></span></strong><br />
+        </p>
+        <hr>
+        <p class="menu">
+          <a href="#intro">Introduzione</a> ·
+          <a href="#installation">Installazione</a> ·
+          <a href="#faq">FAQ</a> ·
+          <a href="#credits">Riconoscimenti</a> ·
+          <a href="#version">Cronologia delle versioni</a>
+        </p>
+      </div>
+      <div id="maindiv">
+
+        <!-- ================== I n t r o d u c t i o n ================== -->
+        <a id="intro"></a>
+        <div class="content">
+          <h2>Introduzione</h2><p class="important"><strong>Localizzazione italiana.</strong> L'audio originale inglese è mantenuto. La citazione iniziale di Nietzsche è tradotta nel filmato INTRO.wbm; questa traduzione è nuova e non proviene dai TLK italiani. Per le battute dell'introduzione e i titoli già presenti si riutilizzano i testi italiani del gioco. I nomi dei marchi rimangono invariati. Per vedere la citazione italiana, scegliere Italiano nell'installer e il componente che sostituisce tutti i filmati. I sottotitoli delle battute dipendono dalle risorse dell'interfaccia e dalle impostazioni del gioco.</p>
+          <p>Questo mod WeiDU ripristina i filmati classici del primo Baldur's Gate e alcuni filmati di Baldur's Gate II in Baldur's Gate: Enhanced Edition (BGEE), Baldur's Gate: Siege of Dragonspear (SoD) e Baldur's Gate: Enhanced Edition Trilogy (EET). I filmati classici sono stati ridimensionati alle stesse dimensioni dei nuovi filmati di BGEE (1280x720, 852x480 e 512x288), mantenendo le proporzioni originali. Il mod riattiva inoltre il filmato di Beregost alla prima visita nell'area e ripristina nella Taverna del Canto Elfico un filmato tagliato dal gioco originale. È stato sviluppato per Baldur's Gate Enhanced Edition v1.3+ e sarà considerato una versione beta finché questi giochi continueranno a ricevere aggiornamenti. Dalla versione 2.0 è disponibile un componente che ripristina le schermate dei capitoli e dei sogni del BG1 originale in BGEE/SoD/EET, usando il tema appropriato. Le schermate dei capitoli di SoD non sono ripristinate dal gioco originale, nel quale non esistevano. Usare a proprio rischio! Domande, commenti, suggerimenti e segnalazioni di errori sono benvenuti.</p>
+          <h5>I filmati ripristinati comprendono:</h5>
+          <br>
+          <ul>
+            <li>Beregost</li>
+            <li>Logo Black Isle</li>
+            <li>Arrivo a Baldur's Gate</li>
+            <li>Alba a Baldur's Gate</li>
+            <li>Tramonto a Baldur's Gate</li>
+            <li>Il Tempio di Bhaal</li>
+            <li>Logo BioWare</li>
+            <li>Loghi BioWare e IE</li>
+            <li>Logo del drago BioWare</li>
+            <li>L'Accampamento dei Banditi</li>
+            <li>A Candlekeep</li>
+            <li>Riconoscimenti</li>
+            <li>Tramonto</li>
+            <li>Morte</li>
+            <li>Il Dungeon</li>
+            <li>Ingresso nella Torre di Durlag</li>
+            <li>La Città Vecchia</li>
+            <li>Titoli di coda</li>
+            <li>Conclusione</li>
+            <li>La Locanda del Braccio Amico</li>
+            <li>La Fortezza degli Gnoll</li>
+            <li>Logo Infinity Engine</li>
+            <li>Introduzione</li>
+            <li>Il Trono di Ferro</li>
+            <li>La Miniera Allagata</li>
+            <li>Arrivo a Nashkel</li>
+            <li>Alba</li>
+            <li>Il Palazzo Ducale</li>
+            <li>Riposo all'aperto</li>
+            <li>Riposo nel dungeon</li>
+            <li>Riposo in locanda</li>
+            <li>Le Fogne</li>
+            <li>La Taverna</li>
+            <li>Logo TSR</li>
+            <li>Logo WOTC</li>
+            <li>Navigando per il Mare Senza Tracce</li>
+            <li>La Viverna</li>
+          </ul>
+          <address>
+            <span class="footer">BG:EE Classic Movies &gt; Introduzione</span> •<a href="#top">Torna in alto</a>
+          </address>
+        </div>
+
+        <!-- ================== I n s t a l l a t i o n ================== -->
+        <a id="installation"></a>
+        <div class="content">
+          <h2>Installazione</h2>
+          <p>Il mod è suddiviso in due rami GitHub: "BGEE-Classic-Movies:master" e "BGEE-Classic-Movies:LowResOnly". Il primo, "master", contiene tutto il necessario per installare e usare BG:EE Classic Movies. Normalmente basta questo ramo. Il secondo, "LowResOnly", contiene i filmati a risoluzione ridotta, collocati nelle sottocartelle "480" e "lo" delle cartelle dei filmati del gioco. Secondo l'autore, queste versioni probabilmente non vengono usate su Windows o Mac, ma potrebbero servire su altre piattaforme, come iPad o tablet Android. Per installarle insieme ai filmati ad alta risoluzione, estrarre il secondo archivio sopra il contenuto del primo <strong>prima di</strong> installare il mod. <strong>Mantenere la struttura delle cartelle durante l'estrazione!</strong></p>
+          <p>Questo è un mod WeiDU. Per installarlo, estrarre l'ultima versione pubblicata su GitHub nella cartella di BGEE, SoD o EET <strong>che contiene il file chitin.key</strong> (ad esempio "Baldur's Gate Enhanced Edition\Data\00766") e fare doppio clic su Setup-BGEEClassicMovies.exe. Seguire le istruzioni per installare i componenti desiderati. Per disinstallare, avviare nuovamente Setup-BGEEClassicMovies.exe e scegliere l'opzione di disinstallazione.</p>
+          <p>Se, dopo aver seguito questi passaggi, il mod non si installa correttamente, può essere utile consultare <a href="http://www.shsforums.net/topic/41036-faq-for-the-megamods/#entry504045">I problemi comuni di Windows Vista e Windows 7</a>, in particolare le sezioni 2.1, 2.2.1 e 2.2.2.</p>
+          <address>
+            <span class="footer">BG:EE Classic Movies &gt; Installazione</span> <a href="#top">Torna in alto</a>
+          </address>
+        </div>
+
+        <!-- ================== F A Q ================== -->
+        <a id="faq"></a>
+        <div class="content">
+          <h2>Domande frequenti</h2>
+          <p><strong>D: Perché è necessario modificare MOVIDESC.2DA e Baldur.ini (o Baldur.lua)?</strong><br>R: Baldur.ini (o Baldur.lua) e MOVIDESC.2DA vengono modificati per rendere i filmati disponibili nella schermata "Filmati" dell'interfaccia. Poiché alcuni filmati di BG1 non vengono usati durante il gioco, questa è l'unica possibilità di guardarli.</p>
+          <p><strong>D: Durante alcuni filmati si sentono rumori insoliti.</strong><br>R: Il documento originale segnala problemi del codec WEBM usato da BGEE e indica che una successiva patch dovrebbe risolverli. I filmati inglesi non presentano questo problema; quelli polacchi, per esempio, possono produrre rumori insoliti in BGEE. BG2EE aveva lo stesso problema, risolto aggiornando il codec. Questa risposta descrive la situazione riportata dall'autore all'epoca della documentazione.</p>
+          <address>
+            <span class="footer">BG:EE Classic Movies &gt; FAQ</span> •<a href="#top">Torna in alto</a>
+          </address>
+        </div>
+
+        <!-- ================== C r e d i t s ================== -->
+        <a id="credits"></a>
+        <div class="content">
+          <h2>Riconoscimenti</h2>
+          <p>Grazie a <a href="http://www.shsforums.net/user/9711-wisp/">Wisp</a> per il codice WeiDU iniziale e a <a href="http://www.shsforums.net/user/6375-k4thos/">K4thos</a> per averlo aggiornato.</p>
+          <ul>
+            <li><a href="http://www.shsforums.net/topic/39117-ps-gui-v304/">PS gui</a></li>
+            <li><a href="http://www.shsforums.net/topic/45358-nearinfinity/">NearInfinity</a></li>
+            <li><a href="http://firefogg.org/">Firefogg</a></li>
+            <li><a href="http://www.weidu.org/~thebigg/">WeiDU</a></li>
+            <li><a href="http://www.infognition.com/VideoEnhancer/">Video Enhancer</a></li>
+            <li><a href="http://www.imagemagick.org/script/index.php">ImageMagick</a></li>
+          </ul>
+          <hr class="floatfix" />
+          <address>
+            <span class="footer">BG:EE Classic Movies &gt; Riconoscimenti</span> •<a href="#top">Torna in alto</a>
+          </address>
+        </div>
+
+        <!-- ================== V e r s i o n   H i s t o r y ================== -->
+        <a id="version"></a>
+        <div class="content">
+          <h2>Cronologia delle versioni</h2>
+          
+          <h6>Versione 2.4.1: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiornata la traduzione tedesca di PatrikKothe</li>
+          </ul>
+          <h6>Versione 2.4.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Nuovo componente per modificare i filmati iniziali con le seguenti opzioni:<br><br>
+              <ul>
+                <li>Disattiva i filmati iniziali del logo e dell'introduzione</li>
+                <li>Disattiva il filmato iniziale del logo</li>
+                <li>Sostituisci il filmato del logo con i loghi classici di BG1</li>
+                <li>Riproduci i loghi classici di BG1 prima del filmato del logo Beamdog</li>
+              </ul>
+            </li>
+            <li>Risincronizzati i sottotitoli del filmato introduttivo</li>
+            <li>Corretti i filmati duplicati in EET</li>
+          </ul>
+          <h6>Versione 2.3.2: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiornata la traduzione spagnola di ElGamerViejuno</li>
+            <li>Nuovo componente non ufficiale per modificare i filmati iniziali</li>
+          </ul>
+          <h6>Versione 2.3.1: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Uso di etichette univoche a livello globale</li>
+          </ul>
+          <h6>Versione 2.3.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Ridotto il numero di pagine PVRZ utilizzate</li>
+            <li>Migliorato il supporto del tema LeUI-BG1EE</li>
+            <li>Supporto del tema LeUI-SoD</li>
+            <li>Supporto del tema LeUI</li>
+            <li>Supporto di EET: questi filmati ripristinati hanno qualità superiore a quelli inclusi in EET</li>
+            <li>Supporto del tema SoD di EET</li>
+            <li>Supporto di Project Infinity (PI)</li>
+          </ul>
+          <h6>Versione 2.2.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiunta compatibilità con il mod Enhanced UI di lefreut (skin BG1EE)</li>
+          </ul>
+          <h6>Versione 2.1.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiunte localizzazione e traduzione tedesche (grazie a jaydee2k)</li>
+          </ul>
+          <h6>Versione 2.0.0: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiunto il componente per ripristinare le schermate dei capitoli e dei sogni di BG1</li>
+          </ul>
+          <h6>Versione 1.10: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiunte localizzazione e traduzione spagnole (grazie a Unknow_error).</li>
+          </ul>
+          <h6>Versione 1.00: <a href="https://github.com/Sampsca/BGEE-Classic-Movies">su GitHub</a></h6>
+          <ul>
+            <li>Aggiunto supporto di BGEE/SoD V2+</li>
+            <li>Migliorata la logica di installazione dei componenti</li>
+            <li>Aggiornata la documentazione</li>
+          </ul>
+          <h6>Versione 0.05: 25 febbraio 2015</h6>
+          <ul>
+            <li>Aggiornamento alla versione più recente di WeiDU, ora compatibile con BGEE.</li>
+            <li>Non è più necessario modificare manualmente Baldur.ini: se ne occupa l'installer.</li>
+            <li>Ricodificati i filmati ad alta risoluzione (1280x720) per migliorarne la qualità.</li>
+            <li>Incluse versioni dei filmati a risoluzione media (852x480) e bassa (512x288).</li>
+            <li>Ripristinato il filmato TAVERN nella Taverna del Canto Elfico.</li>
+            <li>Aggiornata la documentazione.</li>
+          </ul>
+          <h6>Versione 0.04: 12 dicembre 2012</h6>
+          <ul>
+            <li>Aggiunti BWDRAGON (filmato del logo BioWare) e WOTC (logo WOTC) da BGII.</li>
+            <li>Tutti i filmati sono stati ridimensionati alle stesse dimensioni dei nuovi filmati di BGEE (1280x720), mantenendo le proporzioni originali.</li>
+          </ul>
+          <h6>Versione 0.03: 6 dicembre 2012</h6>
+          <ul>
+            <li>Riattivato il filmato di Beregost alla prima visita nell'area.</li>
+          </ul>
+          <h6>Versione 0.02: 5 dicembre 2012</h6>
+          <ul>
+            <li>Aggiunti da BGII DAYNITE (tramonto), NITEDAY (alba), RESTDUNG (riposo nel dungeon) e RESTINN (riposo in locanda).</li>
+          </ul>
+          <h6>Versione 0.01: 5 dicembre 2012</h6>
+          <ul>
+            <li>Prima versione.</li>
+          </ul>
+          <address>
+            <span class="footer">BG:EE Classic Movies &gt; Cronologia delle versioni</span> •<a href="#top">Torna in alto</a>
+          </address>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

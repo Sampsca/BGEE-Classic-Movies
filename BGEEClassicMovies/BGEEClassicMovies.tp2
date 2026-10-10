@@ -246,11 +246,14 @@ LANGUAGE ~Espanol (Spanish)~
 LANGUAGE ~Deutsch (German)~
   ~de_DE~
   ~BGEEClassicMovies/lang/de_DE/setup.tra~
+LANGUAGE ~Italiano~
+  ~it_IT~
+  ~BGEEClassicMovies/lang/it_IT/setup.tra~
 
 BEGIN @1//Replace all movies
 SUBCOMPONENT @2//Restore BG1 movies to BG:EE
 REQUIRE_PREDICATE GAME_IS "bgee eet" @3//This mod is only available for BG:EE
-FORBID_COMPONENT ~BGEE_PL/setup-BGEE_PL.tp2~ 1 ~Filmiki juz zainstalowane wraz z modem BGEE_PL~
+FORBID_COMPONENT ~BGEE_PL/setup-BGEE_PL.tp2~ 1 @24
 LABEL ~PS_BGEEClassicMovies_ReplaceMovies~
 
 
@@ -412,7 +415,7 @@ END ELSE BEGIN
 OUTER_SPRINT theme ~BGEE~
 END
 
-PRINT ~Using theme: %theme%~
+PRINT @25
 
 //ACTION_IF GAME_INCLUDES ~sod~ BEGIN
 //  ACTION_IF MOD_IS_INSTALLED ~LeUI-BG1EE.tp2~ ~0~ BEGIN
@@ -564,7 +567,7 @@ COPY_EXISTING ~LEAVEA.mos~ ~override/LEAVE.mos~
 COPY_EXISTING ~TOSCENDA.mos~ ~override/TOSCEND.mos~
 
 ACTION_IF NOT GAME_INCLUDES ~SoD~ BEGIN
-  PRINT ~SoD not detected.~
+  PRINT @26
   COPY_EXISTING ~GUICHP0A.mos~ ~override/GUICHP0B.mos~
   COPY_EXISTING ~GUICHP1A.mos~ ~override/GUICHP1B.mos~
   COPY_EXISTING ~GUICHP2A.mos~ ~override/GUICHP2B.mos~
@@ -575,7 +578,7 @@ ACTION_IF NOT GAME_INCLUDES ~SoD~ BEGIN
   COPY_EXISTING ~GUICHP7A.mos~ ~override/GUICHP7B.mos~
   COPY_EXISTING ~GUICHP8A.mos~ ~override/GUICHP8B.mos~
 END ELSE BEGIN
-  PRINT ~SoD detected.~
+  PRINT @27
 END
 
 BEGIN @20 //Disable startup logo and intro movies

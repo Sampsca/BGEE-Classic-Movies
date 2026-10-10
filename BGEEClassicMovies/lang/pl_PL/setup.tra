@@ -22,3 +22,7 @@
 @21   = ~Disable startup logo movie~
 @22   = ~Replace logo movie with classic BG1 logos~
 @23   = ~Play classic BG1 logos before Beamdog's logo movie~
+@24   = ~Filmy zostały już zainstalowane wraz z modem BGEE_PL~
+@25   = ~Używany motyw: %theme%~
+@26   = ~Nie wykryto SoD.~
+@27   = ~Wykryto SoD.~

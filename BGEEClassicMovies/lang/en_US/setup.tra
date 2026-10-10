@@ -22,3 +22,7 @@
 @21   = ~Disable startup logo movie~
 @22   = ~Replace logo movie with classic BG1 logos~
 @23   = ~Play classic BG1 logos before Beamdog's logo movie~
+@24   = ~Movies already installed with the BGEE_PL mod~
+@25   = ~Using theme: %theme%~
+@26   = ~SoD not detected.~
+@27   = ~SoD detected.~
